@@ -11,9 +11,9 @@ permissions:
 env:
   GH_PAGES_BRANCH: docs
   GH_PAGES_FOLDER: "/docs"
-  APP_PREFIX: "/${{GITHUB_REPOSITORY}}/${{GITHUB_REF_NAME}}"
-  STORYBOOK_STATIC_TARGET: "/docs/${{GITHUB_REF_NAME}}"
-  CURRENT_TREE_URL: "https://github.com/${{GITHUB_REPOSITORY}}/tree/${{GITHUB_SHA}}"
+  APP_PREFIX: "/${GITHUB_REPOSITORY}/${GITHUB_REF_NAME}"
+  STORYBOOK_STATIC_TARGET: "/docs/${GITHUB_REF_NAME}"
+  CURRENT_TREE_URL: "https://github.com/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}"
 
 jobs:
   publish:
