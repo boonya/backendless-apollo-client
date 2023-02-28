@@ -11,8 +11,7 @@ permissions:
 env:
   TARGET_BRANCH: docs
   TARGET_FOLDER: docs
-  # APP_PREFIX: ${GH_PAGE_ROOT}${GITHUB_REF_NAME}
-  GH_PAGE_ROOT: /backendless-apollo-client/
+  APP_PREFIX: /backendless-apollo-client/${GITHUB_REF_NAME}
   STORYBOOK_STATIC_TARGET: docs/${GITHUB_REF_NAME}
 
 jobs:
@@ -25,13 +24,12 @@ jobs:
         with:
           node-version-file: ".nvmrc"
       - run: npm ci
-      - run: APP_PREFIX=${GH_PAGE_ROOT}${GITHUB_REF_NAME} npm run storybook:build
+      - run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           branch: ${TARGET_BRANCH}
           folder: storybook-static
           target-folder: ${STORYBOOK_STATIC_TARGET}
-          git-config-name: github-pages-deploy-action
 
   readme:
     needs: [publish]
@@ -45,9 +43,8 @@ jobs:
           SANITIZED_REF_NAME=$(printf '%s\n' "${GITHUB_REF_NAME}" | sed -e 's/[\/&]/\\&/g')
           sed -i "/\[${SANITIZED_REF_NAME}\]/d" docs/index.md
           echo "| [$GITHUB_REF_NAME]($GITHUB_REF_NAME) | [\`$GITHUB_SHA\`](https://github.com/${{ github.repository }}/tree/$GITHUB_SHA) |" >> docs/index.md
-      - uses: JamesIves/github-pages-deploy-action@v4.3.4
+      - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           branch: ${TARGET_BRANCH}
           folder: ${TARGET_FOLDER}
           target-folder: ${TARGET_FOLDER}
-          git-config-name: github-pages-deploy-action
