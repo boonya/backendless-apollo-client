@@ -4,7 +4,7 @@ import withRouter from '@sb/decorators/withRouter';
 
 // Initialize MSW
 initialize({
-	serviceWorker: {url: `${APP_PREFIX}mockServiceWorker.js`},
+	// serviceWorker: {url: `${APP_PREFIX}mockServiceWorker.js`},
 	onUnhandledRequest: 'bypass',
 });
 

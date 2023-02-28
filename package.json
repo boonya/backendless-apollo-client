@@ -17,7 +17,7 @@
     "graphql-codegen": "graphql-codegen --config .graphql-codegen.yml",
     "storybook": "start-storybook -p 6006",
     "storybook:test": "test-storybook",
-    "storybook:build": "APP_PREFIX=${GITHUB_REF_NAME:-/} build-storybook"
+    "storybook:build": "build-storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.7.9",
