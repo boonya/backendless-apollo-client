@@ -14,10 +14,10 @@
     "lint": "eslint . .storybook",
     "test": "jest .",
     "test:ci": "jest --coverage --coverageReporters=text --verbose",
+    "graphql-codegen": "graphql-codegen --config .graphql-codegen.yml",
     "storybook": "start-storybook -p 6006",
     "storybook:test": "test-storybook",
-    "storybook:build": "build-storybook",
-    "graphql-codegen": "graphql-codegen --config .graphql-codegen.yml"
+    "storybook:build": "APP_PREFIX=${GITHUB_REF_NAME:-/} build-storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.7.9",
@@ -59,6 +59,7 @@
     "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-named-asset-import": "^0.3.8",
     "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.3",
     "css-mediaquery": "^0.1.2",
     "dotenv": "^16.0.3",
     "eslint": "^8.35.0",
