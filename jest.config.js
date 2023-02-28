@@ -17,6 +17,13 @@ module.exports = {
 	coverageDirectory: './coverage',
 	// A list of reporter names that Jest uses when writing coverage reports
 	coverageReporters: ['text-summary', 'html'],
+	coveragePathIgnorePatterns: [
+		'\\.(?:gql|graphql)$',
+	],
+	transform: {
+		'\\.(?:gql|graphql)$': '<rootDir>/test/transformers/graphql.js',
+		'\\.js$': 'babel-jest',
+	},
 	transformIgnorePatterns: [
 		'/node_modules/',
 		'\\.pnp\\.[^\\/]+$',

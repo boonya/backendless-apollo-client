@@ -3,8 +3,6 @@ import Router from '@test/Router';
 
 /**
  * Returns a function decorator to wrap a story by the `Router`.
- *
- * @returns {import('@sb/preview').Decorator}
  */
 export default function withRouter() {
 	return (Story, {parameters}) => (

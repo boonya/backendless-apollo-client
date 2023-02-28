@@ -1,4 +1,4 @@
-const {NODE_ENV, APP_PREFIX} = require('./env');
+const {NODE_ENV, APP_PREFIX, GITHUB_API_URL, GITHUB_API_TOKEN} = require('./env');
 const {
 	htmlEntry,
 	jsEntry,
@@ -27,6 +27,8 @@ module.exports = {
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify(NODE_ENV),
 			APP_PREFIX: JSON.stringify(APP_PREFIX),
+			GITHUB_API_URL: JSON.stringify(GITHUB_API_URL),
+			GITHUB_API_TOKEN: JSON.stringify(GITHUB_API_TOKEN),
 		}),
 		new CopyPlugin({patterns: [{
 			from: publicDir,
@@ -50,6 +52,11 @@ module.exports = {
 				test: /\.(?:js|mjs)$/u,
 				exclude: /node_modules/u,
 				loader: 'babel-loader',
+			},
+			{
+				test: /\.(?:graphql|gql)$/u,
+				include: /src/u,
+				loader: 'graphql-tag/loader',
 			},
 		],
 	},

@@ -8,6 +8,8 @@ module.exports = {
 	globals: {
 		NODE_ENV: true,
 		APP_PREFIX: true,
+		GITHUB_API_URL: true,
+		GITHUB_API_TOKEN: true,
 	},
 	parser: '@babel/eslint-parser',
 	parserOptions: {
@@ -60,6 +62,15 @@ module.exports = {
 			rules: {
 				'eslint-comments/disable-enable-pair': 'off',
 				'eslint-comments/no-unlimited-disable': 'off',
+			},
+		},
+		{
+			files: [
+				'config/env.js',
+				'test/setup/*',
+			],
+			rules: {
+				'node/no-process-env': 'off',
 			},
 		},
 		{

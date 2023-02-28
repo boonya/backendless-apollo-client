@@ -1,3 +1,6 @@
-export default function wrapper(props, Component = 'div') {
-	return (Story) => <Component {...props}><Story /></Component>;
+import testWrapper from '@test/decorators/wrapper';
+
+export default function wrapper(...args) {
+	const Wrapper = testWrapper(...args);
+	return (Story) => <Wrapper><Story /></Wrapper>;
 }

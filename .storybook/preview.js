@@ -1,9 +1,10 @@
 import {initialize, mswDecorator} from 'msw-storybook-addon';
+import withApollo from '@sb/decorators/withApollo';
 import withRouter from '@sb/decorators/withRouter';
 
 // Initialize MSW
 initialize({
-	// serviceWorker: {url: `${APP_PREFIX}mockServiceWorker.js`},
+	serviceWorker: {url: `${APP_PREFIX}mockServiceWorker.js`},
 	onUnhandledRequest: 'bypass',
 });
 
@@ -13,6 +14,7 @@ export const decorators = [
 			<Story />
 		</div>
 	),
+	withApollo(),
 	withRouter(),
 	mswDecorator,
 ];
