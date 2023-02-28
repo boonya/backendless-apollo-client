@@ -3,7 +3,7 @@ name: Publishing storybook 🎨
 on:
   push:
     branches-ignore:
-      - storybook
+      - docs
 
 permissions:
   contents: write
