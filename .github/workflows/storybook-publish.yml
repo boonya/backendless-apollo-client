@@ -31,12 +31,12 @@ jobs:
           echo "APP_PREFIX: ${{ env.APP_PREFIX }}"
           echo "STORYBOOK_STATIC_TARGET: ${{ env.STORYBOOK_STATIC_TARGET }}"
           echo "CURRENT_TREE_URL: ${{ env.CURRENT_TREE_URL }}"
-      - run: APP_PREFIX=$APP_PREFIX npm run storybook:build
+      - run: APP_PREFIX=${{ env.APP_PREFIX }} npm run storybook:build
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           branch: "${{ env.GH_PAGES_BRANCH }}"
           folder: storybook-static
-          target-folder: "$STORYBOOK_STATIC_TARGET"
+          target-folder: "${{ env.STORYBOOK_STATIC_TARGET}}"
 
   readme:
     needs: [publish]
@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: "${{ env.GH_PAGES_FOLDER }}"
+          ref: "${{ env.GH_PAGES_BRANCH }}"
       - run: |
           SANITIZED_REF_NAME=$(printf '%s\n' "${GITHUB_REF_NAME}" | sed -e 's/[\/&]/\\&/g')
           sed -i "/\[${SANITIZED_REF_NAME}\]/d" docs/index.md
