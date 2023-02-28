@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: storybook
+          ref: docs
       - run: echo "TARGET=docs/${{ github.event.ref }}" >> $GITHUB_ENV
       - run: |
           rm -rf ${{ env.TARGET }}
@@ -19,7 +19,7 @@ jobs:
           sed -i "/\[${SANITIZED_REF_NAME}\]/d" docs/index.md
       - uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
-          branch: storybook
+          branch: docs
           folder: docs
           target-folder: docs
           git-config-name: github-pages-deploy-action
