@@ -5,6 +5,9 @@ on:
     branches-ignore:
       - storybook
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     name: Checkout, build & publish

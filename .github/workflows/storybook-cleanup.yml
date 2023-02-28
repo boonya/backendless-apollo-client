@@ -4,6 +4,9 @@ name: Cleanup storybook 🧹
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#delete
 on: [delete]
 
+permissions:
+  contents: write
+
 jobs:
   delete:
     name: Delete redundant directory 🗑
