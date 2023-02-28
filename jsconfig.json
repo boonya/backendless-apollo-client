@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@public/*": ["./public/*"],
+			"@sb/*": ["./.storybook/*"],
+			"@src/*": ["./src/*"],
+			"@test/*": ["./test/*"]
+		}
+	},
+	"exclude": ["node_modules", "build"]
+}

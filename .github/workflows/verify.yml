@@ -1,0 +1,32 @@
+name: Verification 👮🏽‍♂️
+
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+  pull_request:
+
+jobs:
+  linting:
+    name: Linting 🔎
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - name: Test env setup
+        run: npm ci
+      - run: npm run lint
+
+  testing:
+    name: Testing 🧪
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - name: Test env setup
+        run: npm ci
+      - run: npm run test:ci

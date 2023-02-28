@@ -1,0 +1,25 @@
+name: Cleanup storybook 🧹
+
+# Note: This event will only trigger a workflow run if the workflow file is on the default branch.
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#delete
+on: [delete]
+
+jobs:
+  delete:
+    name: Delete redundant directory 🗑
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: storybook
+      - run: echo "TARGET=docs/${{ github.event.ref }}" >> $GITHUB_ENV
+      - run: |
+          rm -rf ${{ env.TARGET }}
+          SANITIZED_REF_NAME=$(printf '%s\n' "${{ github.event.ref }}" | sed -e 's/[\/&]/\\&/g')
+          sed -i "/\[${SANITIZED_REF_NAME}\]/d" docs/index.md
+      - uses: JamesIves/github-pages-deploy-action@v4.4.0
+        with:
+          branch: storybook
+          folder: docs
+          target-folder: docs
+          git-config-name: github-pages-deploy-action
