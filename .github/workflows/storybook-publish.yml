@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  GH_PAGE_ROOT: https://boonya.github.io/backendless-apollo-client/
+
 jobs:
   publish:
     name: Checkout, build & publish
@@ -18,7 +21,7 @@ jobs:
         with:
           node-version-file: ".nvmrc"
       - run: npm ci
-      - run: npm run storybook:build
+      - run: APP_PREFIX=${GH_PAGE_ROOT}${GITHUB_REF_NAME} npm run storybook:build
       - run: echo "TARGET=docs/$GITHUB_REF_NAME" >> $GITHUB_ENV
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
