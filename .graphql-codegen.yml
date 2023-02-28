@@ -1,0 +1,8 @@
+schema: ${GITHUB_API_URL}
+headers:
+  Authorization: bearer ${GITHUB_API_TOKEN}
+  User-Agent: graphql-codegen
+generates:
+  ./src/schema.graphql:
+    plugins:
+      - schema-ast

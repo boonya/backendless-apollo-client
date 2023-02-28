@@ -13,3 +13,9 @@ indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
+
+[src/schema.graphql]
+indent_style = space
+indent_size = 2
+insert_final_newline = false
+trim_trailing_whitespace = false

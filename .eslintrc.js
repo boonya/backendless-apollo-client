@@ -70,7 +70,7 @@ module.exports = {
 		},
 		{
 			files: [
-				'**/*.stories.*',
+				'**/*.stories.js',
 				'**/*.test.js',
 				'.storybook/**',
 				'test/**',
@@ -96,6 +96,25 @@ module.exports = {
 				'node/no-missing-import': 'off',
 				'node/no-missing-require': 'off',
 			},
+		},
+		{
+			files: [
+				'src/**/__response__/**.js',
+				'src/**/__data__/**.js',
+			],
+			rules: {
+				'max-len': 'off',
+				camelcase: 'off',
+				'babel/camelcase': 'off',
+			},
+		},
+		{
+			files: ['./src/**/*.gql'],
+			parserOptions: {
+				schema: './src/schema.graphql',
+				operations: './src/**/*.gql',
+			},
+			extends: 'plugin:@graphql-eslint/operations-recommended',
 		},
 	],
 };
