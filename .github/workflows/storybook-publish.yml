@@ -9,7 +9,11 @@ permissions:
   contents: write
 
 env:
-  GH_PAGE_ROOT: https://boonya.github.io/backendless-apollo-client/
+  TARGET_BRANCH: docs
+  TARGET_FOLDER: docs
+  # APP_PREFIX: ${GH_PAGE_ROOT}${GITHUB_REF_NAME}
+  GH_PAGE_ROOT: /backendless-apollo-client/
+  STORYBOOK_STATIC_TARGET: docs/${GITHUB_REF_NAME}
 
 jobs:
   publish:
@@ -22,12 +26,11 @@ jobs:
           node-version-file: ".nvmrc"
       - run: npm ci
       - run: APP_PREFIX=${GH_PAGE_ROOT}${GITHUB_REF_NAME} npm run storybook:build
-      - run: echo "TARGET=docs/$GITHUB_REF_NAME" >> $GITHUB_ENV
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
-          branch: docs
+          branch: ${TARGET_BRANCH}
           folder: storybook-static
-          target-folder: ${{ env.TARGET }}
+          target-folder: ${STORYBOOK_STATIC_TARGET}
           git-config-name: github-pages-deploy-action
 
   readme:
@@ -44,7 +47,7 @@ jobs:
           echo "| [$GITHUB_REF_NAME]($GITHUB_REF_NAME) | [\`$GITHUB_SHA\`](https://github.com/${{ github.repository }}/tree/$GITHUB_SHA) |" >> docs/index.md
       - uses: JamesIves/github-pages-deploy-action@v4.3.4
         with:
-          branch: docs
-          folder: docs
-          target-folder: docs
+          branch: ${TARGET_BRANCH}
+          folder: ${TARGET_FOLDER}
+          target-folder: ${TARGET_FOLDER}
           git-config-name: github-pages-deploy-action
