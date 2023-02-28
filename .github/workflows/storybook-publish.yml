@@ -25,6 +25,12 @@ jobs:
         with:
           node-version-file: ".nvmrc"
       - run: npm ci
+      - run: |
+          echo GH_PAGES_BRANCH="$GH_PAGES_BRANCH"
+          echo GH_PAGES_FOLDER="$GH_PAGES_FOLDER"
+          echo APP_PREFIX="$APP_PREFIX"
+          echo STORYBOOK_STATIC_TARGET="$STORYBOOK_STATIC_TARGET"
+          echo CURRENT_TREE_URL="$CURRENT_TREE_URL"
       - run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
