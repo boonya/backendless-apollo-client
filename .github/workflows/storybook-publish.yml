@@ -11,6 +11,7 @@ permissions:
 env:
   GH_PAGES_BRANCH: docs
   GH_PAGES_FOLDER: docs
+  MD_FILE: index.md
 
 jobs:
   publish:
@@ -26,12 +27,6 @@ jobs:
         run: |
           echo "APP_PREFIX=/backendless-apollo-client/${GITHUB_REF_NAME}" >> $GITHUB_ENV
           echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${GITHUB_REF_NAME}" >> $GITHUB_ENV
-
-      - run: |
-          echo 'GH_PAGES_BRANCH: ${GH_PAGES_BRANCH}'
-          echo 'GH_PAGES_FOLDER: ${GH_PAGES_FOLDER}'
-          echo 'APP_PREFIX: ${APP_PREFIX}'
-          echo 'STORYBOOK_STATIC_TARGET: ${STORYBOOK_STATIC_TARGET}'
       - run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
@@ -49,7 +44,7 @@ jobs:
           ref: ${{ env.GH_PAGES_BRANCH }}
       - run: |
           SANITIZED_REF_NAME=$(printf '%s\n' "${GITHUB_REF_NAME}" | sed -e 's/[\/&]/\\&/g')
-          sed -i "/\[${SANITIZED_REF_NAME}\]/d" docs/index.md
+          sed -i "/\[${SANITIZED_REF_NAME}\]/d" ${GH_PAGES_FOLDER}/${MD_FILE}
           echo "| [${GITHUB_REF_NAME}](${GITHUB_REF_NAME}) | [\`${GITHUB_SHA}\`](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}) |" >> docs/index.md
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
