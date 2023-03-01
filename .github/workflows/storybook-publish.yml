@@ -11,9 +11,6 @@ permissions:
 env:
   GH_PAGES_BRANCH: docs
   GH_PAGES_FOLDER: docs
-  APP_PREFIX: "/backendless-apollo-client/${GITHUB_REF_NAME}" # Need to subtract $GITHUB_REPOSITORY_OWNER from $GITHUB_REPOSITORY
-  STORYBOOK_STATIC_TARGET: "/docs/${GITHUB_REF_NAME}"
-  CURRENT_TREE_URL: "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}"
 
 jobs:
   publish:
@@ -25,18 +22,22 @@ jobs:
         with:
           node-version-file: ".nvmrc"
       - run: npm ci
+      - name: "Prepare variables"
+        run: |
+          echo "APP_PREFIX=/backendless-apollo-client/${GITHUB_REF_NAME}" >> $GITHUB_ENV
+          echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${GITHUB_REF_NAME}" >> $GITHUB_ENV
+
       - run: |
-          echo 'GH_PAGES_BRANCH: ${{ env.GH_PAGES_BRANCH }}'
-          echo 'GH_PAGES_FOLDER: ${{ env.GH_PAGES_FOLDER }}'
-          echo 'APP_PREFIX: ${{ env.APP_PREFIX }}'
-          echo 'STORYBOOK_STATIC_TARGET: ${{ env.STORYBOOK_STATIC_TARGET }}'
-          echo 'CURRENT_TREE_URL: ${{ env.CURRENT_TREE_URL }}'
-      - run: APP_PREFIX=${{ env.APP_PREFIX }} npm run storybook:build
+          echo 'GH_PAGES_BRANCH: ${GH_PAGES_BRANCH}'
+          echo 'GH_PAGES_FOLDER: ${GH_PAGES_FOLDER}'
+          echo 'APP_PREFIX: ${APP_PREFIX}'
+          echo 'STORYBOOK_STATIC_TARGET: ${STORYBOOK_STATIC_TARGET}'
+      - run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
-          branch: "${{ env.GH_PAGES_BRANCH }}"
+          branch: ${{ env.GH_PAGES_BRANCH }}
           folder: storybook-static
-          target-folder: "${{ env.STORYBOOK_STATIC_TARGET}}"
+          target-folder: ${{ env.STORYBOOK_STATIC_TARGET}}
 
   readme:
     needs: [publish]
@@ -45,13 +46,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: "${{ env.GH_PAGES_BRANCH }}"
+          ref: ${{ env.GH_PAGES_BRANCH }}
       - run: |
           SANITIZED_REF_NAME=$(printf '%s\n' "${GITHUB_REF_NAME}" | sed -e 's/[\/&]/\\&/g')
           sed -i "/\[${SANITIZED_REF_NAME}\]/d" docs/index.md
-          echo "| [$GITHUB_REF_NAME]($GITHUB_REF_NAME) | [\`$GITHUB_SHA\`]($CURRENT_TREE_URL) |" >> docs/index.md
+          echo "| [${GITHUB_REF_NAME}](${GITHUB_REF_NAME}) | [\`${GITHUB_SHA}\`](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}) |" >> docs/index.md
       - uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
-          branch: "${{ env.GH_PAGES_BRANCH }}"
-          folder: "${{ env.GH_PAGES_FOLDER }}"
-          target-folder: "${{ env.GH_PAGES_FOLDER }}"
+          branch: ${{ env.GH_PAGES_BRANCH }}
+          folder: ${{ env.GH_PAGES_FOLDER }}
+          target-folder: ${{ env.GH_PAGES_FOLDER }}
