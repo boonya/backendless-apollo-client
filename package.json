@@ -17,7 +17,7 @@
     "graphql-codegen": "graphql-codegen --config .graphql-codegen.yml",
     "storybook": "start-storybook -p 6006",
     "storybook:test": "test-storybook",
-    "storybook:build": "APP_PREFIX=${GITHUB_REF_NAME:-/} build-storybook"
+    "storybook:build": "build-storybook"
   },
   "dependencies": {
     "@apollo/client": "^3.7.9",
@@ -54,7 +54,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "babel-eslint": "^10.1.0",
     "babel-loader": "^9.1.2",
     "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-named-asset-import": "^0.3.8",

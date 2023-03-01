@@ -7,6 +7,11 @@ on: [delete]
 permissions:
   contents: write
 
+env:
+  GH_PAGES_BRANCH: docs
+  GH_PAGES_FOLDER: docs
+  MD_FILE: index.md
+
 jobs:
   delete:
     name: Delete redundant directory 🗑
@@ -14,15 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: docs
-      - run: echo "TARGET=docs/${{ github.event.ref }}" >> $GITHUB_ENV
+          ref: ${{ env.GH_PAGES_BRANCH }}
       - run: |
-          rm -rf ${{ env.TARGET }}
+          rm -rf "${GH_PAGES_FOLDER}/${{ github.event.ref }}"
           SANITIZED_REF_NAME=$(printf '%s\n' "${{ github.event.ref }}" | sed -e 's/[\/&]/\\&/g')
-          sed -i "/\[${SANITIZED_REF_NAME}\]/d" docs/index.md
+          sed -i "/\[${SANITIZED_REF_NAME}\]/d" ${GH_PAGES_FOLDER}/${MD_FILE}
       - uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
-          branch: docs
-          folder: docs
-          target-folder: docs
-          git-config-name: github-pages-deploy-action
+          branch: ${{ env.GH_PAGES_BRANCH }}
+          folder: ${{ env.GH_PAGES_FOLDER }}
+          target-folder: ${{ env.GH_PAGES_FOLDER }}
