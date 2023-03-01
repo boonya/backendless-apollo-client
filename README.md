@@ -1,1 +1,1 @@
-# My own version of Create React App
+# How to do frontend ahead of backend

@@ -34,6 +34,7 @@ module.exports = {
 	webpackFinal: ({module, ...config}) => {
 		return {
 			...config,
+			mode: NODE_ENV || config.mode,
 			plugins: [
 				...config.plugins,
 				new webpack.DefinePlugin({
