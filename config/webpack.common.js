@@ -1,12 +1,12 @@
 const {NODE_ENV, APP_PREFIX, GITHUB_API_URL, GITHUB_API_TOKEN} = require('./env');
 const {
+	buildDir,
 	htmlEntry,
 	jsEntry,
-	publicDir,
 	nodeModulesDir,
-	buildDir,
+	publicDir,
 } = require('./path');
-const {description} = require('../package.json');
+const {description, theme} = require('../public/manifest.json');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -18,6 +18,13 @@ const optimization = {
 		new HtmlMinimizerPlugin(),
 	],
 };
+
+const COLOR_LIGHT_BACKGROUND = theme.colors.light.background;
+const COLOR_LIGHT_TEXT = theme.colors.light.text;
+const COLOR_LIGHT_LINK = theme.colors.light.link;
+const COLOR_DARK_BACKGROUND = theme.colors.dark.background;
+const COLOR_DARK_TEXT = theme.colors.dark.text;
+const COLOR_DARK_LINK = theme.colors.dark.link;
 
 module.exports = {
 	mode: NODE_ENV,
@@ -49,7 +56,15 @@ module.exports = {
 			xhtml: true,
 			base: APP_PREFIX,
 			title: description,
-			templateParameters: {APP_PREFIX},
+			templateParameters: {
+				APP_PREFIX,
+				COLOR_LIGHT_BACKGROUND,
+				COLOR_LIGHT_TEXT,
+				COLOR_LIGHT_LINK,
+				COLOR_DARK_BACKGROUND,
+				COLOR_DARK_TEXT,
+				COLOR_DARK_LINK,
+			},
 		}),
 	],
 	module: {

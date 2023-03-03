@@ -5,17 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title><%= htmlWebpackPlugin.options.title %></title>
 	<link rel="icon" href="favicon.ico"/>
+	<link rel="manifest" href="manifest.json"/>
 	<style>
 		:root {
-			--background-color: #FFFFFF;
-			--text-color: #2F446C;
-			--link-color: #0C5E75;
+			--background-color: <%= COLOR_LIGHT_BACKGROUND %>;
+			--text-color: <%= COLOR_LIGHT_TEXT %>;
+			--link-color: <%= COLOR_LIGHT_LINK %>;
 		}
 		@media(prefers-color-scheme: dark) {
 			:root {
-				--background-color: #282C34;
-				--text-color: #FFFFFF;
-				--link-color: #61DAFB;
+				--background-color: <%= COLOR_DARK_BACKGROUND %>;
+				--text-color: <%= COLOR_DARK_TEXT %>;
+				--link-color: <%= COLOR_DARK_LINK %>;
 			}
 		}
 		html, body, #root {
