@@ -5,8 +5,8 @@
   "author": "Serhii <boonya> Buinytskyi",
   "license": "MIT",
   "engines": {
-    "node": ">=16 <=18",
-    "npm": ">=8 <=9"
+    "node": "~18.14",
+    "npm": "~9.5"
   },
   "scripts": {
     "start": "webpack serve --config config/webpack.start.js",
