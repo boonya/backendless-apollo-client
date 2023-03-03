@@ -6,9 +6,18 @@ const {
 	nodeModulesDir,
 	buildDir,
 } = require('./path');
+const {description} = require('../package.json');
 const CopyPlugin = require('copy-webpack-plugin');
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+
+const optimization = {
+	minimize: true,
+	minimizer: [
+		new HtmlMinimizerPlugin(),
+	],
+};
 
 module.exports = {
 	mode: NODE_ENV,
@@ -22,7 +31,7 @@ module.exports = {
 		chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
 		clean: true,
 	},
-	optimization: NODE_ENV === 'production' ? {minimize: true} : undefined,
+	optimization: NODE_ENV === 'production' ? optimization : undefined,
 	plugins: [
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify(NODE_ENV),
@@ -39,6 +48,7 @@ module.exports = {
 			template: htmlEntry,
 			xhtml: true,
 			base: APP_PREFIX,
+			title: description,
 			templateParameters: {APP_PREFIX},
 		}),
 	],
@@ -50,13 +60,13 @@ module.exports = {
 				loader: 'babel-loader',
 			},
 			{
+				test: /\.css$/u,
+				use: ['style-loader', 'css-loader'],
+			},
+			{
 				test: /\.(?:graphql|gql)$/u,
 				include: /src/u,
 				loader: 'graphql-tag/loader',
-			},
-			{
-				test: /\.css$/u,
-				use: ['style-loader', 'css-loader'],
 			},
 		],
 	},

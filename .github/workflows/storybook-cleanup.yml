@@ -20,9 +20,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ env.GH_PAGES_BRANCH }}
-      - name: "Update ${GH_PAGES_FOLDER}/${MD_FILE}"
+      - name: "Remove a bundle directory"
+        run: rm -rf "${GH_PAGES_FOLDER}/${{ github.event.ref }}"
+      - name: "Update a catalog file"
         run: |
-          rm -rf "${GH_PAGES_FOLDER}/${{ github.event.ref }}"
           SANITIZED_REF_NAME=$(printf '%s\n' "${{ github.event.ref }}" | sed -e 's/[\/&]/\\&/g')
           sed -i "/\[${SANITIZED_REF_NAME}\]/d" ${GH_PAGES_FOLDER}/${MD_FILE}
       - uses: JamesIves/github-pages-deploy-action@v4.4.0

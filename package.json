@@ -1,12 +1,12 @@
 {
-  "name": "my-create-react-app",
+  "name": "backendless-apollo-client",
   "version": "1.0.0",
-  "description": "",
+  "description": "How to do a Frontend Ahead of Backend.",
   "author": "Serhii <boonya> Buinytskyi",
   "license": "MIT",
   "engines": {
-    "node": ">=16 <=18",
-    "npm": ">=8 <=9"
+    "node": "~18.14",
+    "npm": "~9.5"
   },
   "scripts": {
     "start": "webpack serve --config config/webpack.start.js",
@@ -79,6 +79,7 @@
     "eslint-plugin-storybook": "^0.6.11",
     "eslint-plugin-testing-library": "^5.10.2",
     "eslint-plugin-unicorn": "^45.0.2",
+    "html-minimizer-webpack-plugin": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.4.3",
     "jest-environment-jsdom": "^29.4.3",

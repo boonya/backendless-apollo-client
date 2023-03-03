@@ -9,7 +9,6 @@ export default function App() {
 				<header className="App-header">
 					<Greetings />
 					<a
-						className="App-link"
 						href="https://studio.apollographql.com/public/github/home?variant=current"
 						target="_blank"
 						rel="noopener noreferrer"
