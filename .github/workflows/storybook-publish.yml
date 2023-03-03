@@ -28,8 +28,10 @@ jobs:
           echo "APP_PREFIX=/${ROOT_DIR}/${GITHUB_REF_NAME}" >> $GITHUB_ENV
           echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${GITHUB_REF_NAME}" >> $GITHUB_ENV
       - run: npm ci
-      - run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
-      - uses: JamesIves/github-pages-deploy-action@v4.4.1
+      - name: "Run storybook build"
+        run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
+      - name: "Publish bundle"
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           branch: ${{ env.GH_PAGES_BRANCH }}
           folder: storybook-static
@@ -37,18 +39,19 @@ jobs:
 
   readme:
     needs: [publish]
-    name: "Update ${GH_PAGES_FOLDER}/${MD_FILE}"
+    name: "Update a catalog"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           ref: ${{ env.GH_PAGES_BRANCH }}
-      - name: "Update ${GH_PAGES_FOLDER}/${MD_FILE}"
+      - name: "Update a catalog file"
         run: |
           SANITIZED_REF_NAME=$(printf '%s\n' "${GITHUB_REF_NAME}" | sed -e 's/[\/&]/\\&/g')
           sed -i "/\[${SANITIZED_REF_NAME}\]/d" ${GH_PAGES_FOLDER}/${MD_FILE}
           echo "| [${GITHUB_REF_NAME}](${GITHUB_REF_NAME}) | [\`${GITHUB_SHA}\`](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}) |" >> ${GH_PAGES_FOLDER}/${MD_FILE}
-      - uses: JamesIves/github-pages-deploy-action@v4.4.1
+      - name: "Publish changes"
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           branch: ${{ env.GH_PAGES_BRANCH }}
           folder: ${{ env.GH_PAGES_FOLDER }}
