@@ -5,8 +5,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title><%= htmlWebpackPlugin.options.title %></title>
 	<link rel="icon" href="favicon.ico"/>
+	<style><%= require('!!raw-loader!./providers/Theme/index.css').default %></style>
 	<style>
-		<%= require('!!raw-loader!./providers/Theme/index.css').default %>
+		#root-loading {
+			display: flex;
+			height: 100%;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+			animation: pulse-animation 1s infinite;
+			font-size: 2rem;
+		}
+		@keyframes pulse-animation {
+			0% {
+				opacity: 0.1;
+			}
+			50% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0.1;
+			}
+		}
 	</style>
 </head>
 	<body>
