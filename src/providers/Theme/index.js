@@ -1,5 +1,5 @@
+import './index.css';
 import PropTypes from 'prop-types';
-import './common.css';
 
 export default function Theme({children}) {
 	return children;

@@ -1,4 +1,4 @@
-const {NODE_ENV, APP_PREFIX, GITHUB_API_URL, GITHUB_API_TOKEN} = require('../config/env');
+const {NODE_ENV, APP_PREFIX} = require('../config/env');
 const webpackConfig = require('../config/webpack.common');
 const webpack = require('webpack');
 
@@ -40,8 +40,8 @@ module.exports = {
 				new webpack.DefinePlugin({
 					NODE_ENV: JSON.stringify(NODE_ENV),
 					APP_PREFIX: JSON.stringify(APP_PREFIX),
-					GITHUB_API_URL: JSON.stringify(GITHUB_API_URL),
-					GITHUB_API_TOKEN: JSON.stringify(GITHUB_API_TOKEN),
+					GITHUB_API_URL: '<undefined>',
+					GITHUB_API_TOKEN: '<undefined>',
 				}),
 			],
 			module: {

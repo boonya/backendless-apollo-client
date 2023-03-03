@@ -5,53 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title><%= htmlWebpackPlugin.options.title %></title>
 	<link rel="icon" href="favicon.ico"/>
-	<link rel="manifest" href="manifest.json"/>
 	<style>
-		:root {
-			--background-color: <%= COLOR_LIGHT_BACKGROUND %>;
-			--text-color: <%= COLOR_LIGHT_TEXT %>;
-			--link-color: <%= COLOR_LIGHT_LINK %>;
-		}
-		@media(prefers-color-scheme: dark) {
-			:root {
-				--background-color: <%= COLOR_DARK_BACKGROUND %>;
-				--text-color: <%= COLOR_DARK_TEXT %>;
-				--link-color: <%= COLOR_DARK_LINK %>;
-			}
-		}
-		html, body, #root {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-		}
-		body {
-			background-color: var(--background-color);
-			color: var(--text-color);
-		}
-		a {
-			color: var(--link-color);
-		}
-		#root-loading {
-			display: flex;
-			height: 100%;
-			width: 100%;
-			justify-content: center;
-			align-items: center;
-			animation: pulse-animation 1s infinite;
-			font-size: 2rem;
-		}
-		@keyframes pulse-animation {
-			0% {
-				opacity: 0.1;
-			}
-			50% {
-				opacity: 1;
-			}
-			100% {
-				opacity: 0.1;
-			}
-		}
-</style>
+		<%= require('!!raw-loader!./providers/Theme/index.css').default %>
+	</style>
 </head>
 	<body>
 		<noscript>You need to enable JavaScript to run this app.</noscript>

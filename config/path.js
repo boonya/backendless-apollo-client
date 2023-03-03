@@ -11,6 +11,7 @@ const storybookDir = path.resolve(rootDir, '.storybook');
 module.exports = {
 	buildDir,
 	configDir,
+	srcDir,
 	htmlEntry: path.resolve(srcDir, 'index.html'),
 	jsEntry: path.join(srcDir, 'index.js'),
 	nodeModulesDir: path.resolve(rootDir, 'node_modules'),
