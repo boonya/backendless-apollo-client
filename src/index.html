@@ -5,31 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title><%= htmlWebpackPlugin.options.title %></title>
 	<link rel="icon" href="favicon.ico"/>
+	<style><%= require('!!raw-loader!./providers/Theme/index.css').default %></style>
 	<style>
-		:root {
-			--background-color: #FFFFFF;
-			--text-color: #2F446C;
-			--link-color: #0C5E75;
-		}
-		@media(prefers-color-scheme: dark) {
-			:root {
-				--background-color: #282C34;
-				--text-color: #FFFFFF;
-				--link-color: #61DAFB;
-			}
-		}
-		html, body, #root {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-		}
-		body {
-			background-color: var(--background-color);
-			color: var(--text-color);
-		}
-		a {
-			color: var(--link-color);
-		}
 		#root-loading {
 			display: flex;
 			height: 100%;
@@ -50,7 +27,7 @@
 				opacity: 0.1;
 			}
 		}
-</style>
+	</style>
 </head>
 	<body>
 		<noscript>You need to enable JavaScript to run this app.</noscript>

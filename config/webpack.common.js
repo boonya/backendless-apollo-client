@@ -1,26 +1,25 @@
 const {NODE_ENV, APP_PREFIX, GITHUB_API_URL, GITHUB_API_TOKEN} = require('./env');
 const {
+	buildDir,
 	htmlEntry,
 	jsEntry,
-	publicDir,
 	nodeModulesDir,
-	buildDir,
+	publicDir,
 } = require('./path');
 const {description} = require('../package.json');
 const CopyPlugin = require('copy-webpack-plugin');
-const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 const optimization = {
 	minimize: true,
-	minimizer: [
-		new HtmlMinimizerPlugin(),
-	],
+	minimizer: [new TerserPlugin()],
 };
 
 module.exports = {
 	mode: NODE_ENV,
+	optimization: NODE_ENV === 'production' ? optimization : undefined,
 	resolveLoader: {
 		modules: [nodeModulesDir],
 	},
@@ -31,7 +30,6 @@ module.exports = {
 		chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
 		clean: true,
 	},
-	optimization: NODE_ENV === 'production' ? optimization : undefined,
 	plugins: [
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify(NODE_ENV),
@@ -49,7 +47,9 @@ module.exports = {
 			xhtml: true,
 			base: APP_PREFIX,
 			title: description,
-			templateParameters: {APP_PREFIX},
+			templateParameters: {
+				APP_PREFIX,
+			},
 		}),
 	],
 	module: {

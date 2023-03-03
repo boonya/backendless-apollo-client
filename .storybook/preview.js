@@ -1,6 +1,7 @@
 import {initialize, mswDecorator} from 'msw-storybook-addon';
 import withApollo from '@sb/decorators/withApollo';
 import withRouter from '@sb/decorators/withRouter';
+import withTheme, {getThemeToolbar} from '@sb/decorators/withTheme';
 
 // Initialize MSW
 initialize({
@@ -14,6 +15,7 @@ export const decorators = [
 			<Story />
 		</div>
 	),
+	withTheme(),
 	withApollo(),
 	withRouter(),
 	mswDecorator,
@@ -27,4 +29,9 @@ export const parameters = {
 			date: /(?:date|dateTime|time)$/iu,
 		},
 	},
+	backgrounds: {disable: true},
+};
+
+export const globalTypes = {
+	theme: getThemeToolbar(),
 };
