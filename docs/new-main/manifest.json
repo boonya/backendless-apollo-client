@@ -1,0 +1,18 @@
+{
+  "name": "backendless-apollo-client",
+  "description": "How to do a Frontend Ahead of Backend.",
+  "theme": {
+    "colors": {
+      "light": {
+        "background": "#FFFFFF",
+        "text": "#2F446C",
+        "link": "#0C5E75"
+      },
+      "dark": {
+        "background": "#282C34",
+        "text": "#FFFFFF",
+        "link": "#61DAFB"
+      }
+    }
+  }
+}
