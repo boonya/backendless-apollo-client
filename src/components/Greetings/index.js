@@ -1,5 +1,5 @@
-import {useMe} from '../../providers/Me/ContextProvider';
-import Progressbar from '../Progressbar';
+import Progressbar from '@src/components/Progressbar';
+import {useMe} from '@src/providers/Me/ContextProvider';
 
 export default function Greetings() {
 	const {data, loading} = useMe();
