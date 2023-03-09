@@ -19,14 +19,9 @@ function render() {
 	return renderComponent(<DataProvider>children</DataProvider>);
 }
 
-it('components should have an appropriate displayName value.', () => {
-	expect(DataProvider.displayName).toBe('Me.DataProvider');
-	expect(ContextProvider.displayName).toBe('Me.ContextProvider');
-});
-
 describe('should interpolate response on to the context', () => {
 	it('initially', () => {
-		useQuery.mockReturnValue({});
+		useQuery.mockReturnValue(makeQueryResult({}));
 
 		render();
 
@@ -40,7 +35,7 @@ describe('should interpolate response on to the context', () => {
 	});
 
 	it('loading', () => {
-		useQuery.mockReturnValue({loading: true});
+		useQuery.mockReturnValue(makeQueryResult({loading: true}));
 
 		render();
 

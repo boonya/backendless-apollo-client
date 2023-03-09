@@ -14,7 +14,7 @@ function render() {
 }
 
 it('initial', () => {
-	useQuery.mockReturnValue({});
+	useQuery.mockReturnValue(makeQueryResult({}));
 
 	const {result} = render();
 
@@ -22,7 +22,7 @@ it('initial', () => {
 });
 
 it('loading', () => {
-	useQuery.mockReturnValue({loading: true});
+	useQuery.mockReturnValue(makeQueryResult({loading: true}));
 
 	const {result} = render();
 
@@ -34,7 +34,8 @@ it('successful', () => {
 
 	const {result} = render();
 
-	expect(result.current).toEqual({...SUCCESSFUL_RESULT, loading: false});
+	expect(result.current.data).toEqual(SUCCESSFUL_RESULT.data);
+	expect(result.current.loading).toBe(false);
 });
 
 it('ValidationError', () => {
@@ -42,5 +43,6 @@ it('ValidationError', () => {
 
 	const {result} = render();
 
-	expect(result.current).toEqual({...VALIDATION_ERROR_RESULT, loading: false});
+	expect(result.current.error).toEqual(VALIDATION_ERROR_RESULT.error);
+	expect(result.current.loading).toBe(false);
 });

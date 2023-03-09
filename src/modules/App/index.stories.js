@@ -2,9 +2,9 @@ import App from '.';
 import {expect} from '@storybook/jest';
 import {within} from '@storybook/testing-library';
 import {query} from '@sb/msw';
-import QueryFetchMe from '@src/providers/Me/FetchMe.gql';
-import ME_RESPONSE_VALIDATION_ERROR from '@src/providers/Me/__response__/ValidationError.json';
-import ME_RESPONSE from '@src/providers/Me/__response__/success.json';
+import QueryFetchMe from '@src/providers/FetchMe/FetchMe.gql';
+import ME_RESPONSE_VALIDATION_ERROR from '@src/providers/FetchMe/__response__/ValidationError.json';
+import ME_RESPONSE from '@src/providers/FetchMe/__response__/success.json';
 
 export default {component: App};
 

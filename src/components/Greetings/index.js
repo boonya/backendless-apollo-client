@@ -1,8 +1,8 @@
 import Progressbar from '@src/components/Progressbar';
-import {useMe} from '@src/providers/Me/ContextProvider';
+import {useMeContext} from '@src/providers/FetchMe/ContextProvider';
 
 export default function Greetings() {
-	const {data, loading} = useMe();
+	const {data, loading} = useMeContext();
 
 	if (loading) {
 		return <Progressbar />;

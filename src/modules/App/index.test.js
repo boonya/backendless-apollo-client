@@ -1,12 +1,12 @@
 import App from '.';
 import {render, screen} from '@testing-library/react';
-import MeProvider from '@src/providers/Me';
-import MeContextProvider from '@src/providers/Me/ContextProvider';
-import VALIDATION_ERROR_DATA from '@src/providers/Me/__data__/ValidationError';
-import ME_DATA from '@src/providers/Me/__data__/success';
+import MeProvider from '@src/providers/FetchMe';
+import MeContextProvider from '@src/providers/FetchMe/ContextProvider';
+import VALIDATION_ERROR_DATA from '@src/providers/FetchMe/__data__/ValidationError';
+import ME_DATA from '@src/providers/FetchMe/__data__/success';
 import wrapper from '@test/decorators/wrapper';
 
-jest.mock('@src/providers/Me');
+jest.mock('@src/providers/FetchMe');
 
 it('should render Greetings if loading.', () => {
 	MeProvider.mockImplementation(wrapper({loading: true}, MeContextProvider));

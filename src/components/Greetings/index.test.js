@@ -1,17 +1,17 @@
 import Greetings from '.';
 import {screen} from '@testing-library/react';
-import {useMe} from '@src/providers/Me/ContextProvider';
-import ME_DATA from '@src/providers/Me/__data__/success';
+import {useMeContext} from '@src/providers/FetchMe/ContextProvider';
+import ME_DATA from '@src/providers/FetchMe/__data__/success';
 import {renderComponent} from '@test/render';
 
-jest.mock('@src/providers/Me/ContextProvider');
+jest.mock('@src/providers/FetchMe/ContextProvider');
 
 function render() {
 	return renderComponent(<Greetings />);
 }
 
 it('should render progressbar.', () => {
-	useMe.mockReturnValue({loading: true});
+	useMeContext.mockReturnValue({loading: true});
 
 	render();
 
@@ -20,7 +20,7 @@ it('should render progressbar.', () => {
 });
 
 it('should render user name.', () => {
-	useMe.mockReturnValue(ME_DATA);
+	useMeContext.mockReturnValue(ME_DATA);
 
 	render();
 
@@ -28,7 +28,7 @@ it('should render user name.', () => {
 });
 
 it('should render "Dude" as a fallback value.', () => {
-	useMe.mockReturnValue({});
+	useMeContext.mockReturnValue({});
 
 	render();
 

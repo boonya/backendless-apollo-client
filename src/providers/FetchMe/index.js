@@ -2,7 +2,7 @@ import ContextProvider from './ContextProvider';
 import useFetch from './useFetch';
 import PropTypes from 'prop-types';
 
-export default function Me({children}) {
+export default function FetchMe({children}) {
 	const result = useFetch();
 
 	return (
@@ -12,8 +12,6 @@ export default function Me({children}) {
 	);
 }
 
-Me.displayName = 'Me.DataProvider';
-
-Me.propTypes = {
+FetchMe.propTypes = {
 	children: PropTypes.node.isRequired,
 };

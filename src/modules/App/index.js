@@ -1,6 +1,6 @@
 import './index.css';
 import Greetings from '@src/components/Greetings';
-import MeProvider from '@src/providers/Me';
+import MeProvider from '@src/providers/FetchMe';
 
 export default function App() {
 	return (
