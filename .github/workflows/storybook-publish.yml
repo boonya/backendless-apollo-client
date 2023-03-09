@@ -15,22 +15,36 @@ env:
   GH_PAGES_BRANCH: docs
   GH_PAGES_FOLDER: docs
   MD_FILE: index.md
+  REF_NAME: ${{ github.event.pull_request.head.ref || github.event.ref }}
 
 jobs:
   debug:
     name: Debug
     runs-on: ubuntu-latest
     steps:
-      # ref: refs/heads/wf,
+      # ref: refs/heads/wf
+      # refs/heads/wf
+      #
+      # refs/heads/<branch_name>,
+      # for pull requests it is refs/pull/<pr_number>/merge,
+      # and for tags it is refs/tags/<tag_name>.
       - run: |
           echo "Debug step..."
 
           echo "github.event_name: ${{ github.event_name }}"
+          echo "github.base_ref: ${{ github.base_ref }}"
+          echo "github.head_ref: ${{ github.head_ref }}"
+          echo "github.ref: ${{ github.ref }}"
+          echo "github.ref_name: ${{ github.ref_name }}"
+
           echo "github.event.repository.homepage: ${{ github.event.repository.homepage }}"
           echo "github.event.repository.html_url: ${{ github.event.repository.html_url }}"
           echo "github.event.ref: ${{ github.event.ref }}"
           echo "github.event.pull_request.head.ref: ${{ github.event.pull_request.head.ref }}"
-          echo "github.event.pull_request.head.ref || github.event.ref: ${{ github.event.pull_request.head.ref || github.event.ref }}"
+          echo "branch name: ${{ github.event.pull_request.head.ref || github.event.ref }}"
+          echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
+          echo "GITHUB_REF: ${GITHUB_REF}"
+          echo "REF_NAME: ${env.REF_NAME}"
 
           ROOT_DIR=`echo ${GITHUB_REPOSITORY} | sed -e "s/^${GITHUB_REPOSITORY_OWNER}\///"`
           echo "APP_PREFIX=/${ROOT_DIR}/${GITHUB_REF_NAME}"
