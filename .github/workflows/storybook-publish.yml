@@ -29,6 +29,8 @@ jobs:
           echo "github.event.repository.homepage: ${{ github.event.repository.homepage }}"
           echo "github.event.repository.html_url: ${{ github.event.repository.html_url }}"
           echo "github.event.ref: ${{ github.event.ref }}"
+          echo "github.event.pull_request.head.ref: ${{ github.event.pull_request.head.ref }}"
+          echo "github.event.pull_request.head.ref || github.event.ref: ${{ github.event.pull_request.head.ref || github.event.ref }}"
 
           ROOT_DIR=`echo ${GITHUB_REPOSITORY} | sed -e "s/^${GITHUB_REPOSITORY_OWNER}\///"`
           echo "APP_PREFIX=/${ROOT_DIR}/${GITHUB_REF_NAME}"
