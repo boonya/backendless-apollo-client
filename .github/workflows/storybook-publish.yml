@@ -20,8 +20,6 @@ env:
   MD_FILE: index.md
   SHA: ${{ github.event.after }} # sha hash of head
   REF_NAME: ${{ github.head_ref || github.ref_name }} # branch or tag name
-  APP_PREFIX: "/${REPO_NAME}/${REF_NAME}"
-  STORYBOOK_STATIC_TARGET: "/${GH_PAGES_FOLDER}/${REF_NAME}"
 
 jobs:
   debug:
