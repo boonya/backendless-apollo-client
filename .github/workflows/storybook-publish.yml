@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - wf # Do not forget to remove it
+      - wf/test # Do not forget to remove it
 
 permissions:
   contents: write
