@@ -21,10 +21,22 @@ jobs:
     name: Debug
     runs-on: ubuntu-latest
     steps:
+      # ref: refs/heads/wf,
       - run: |
-          echo "Debug step"
+          echo "Debug step..."
+
           echo "github.event_name: ${{ github.event_name }}"
-          echo "github.event.push: ${{ toJSON(github.event.push) }}"
+          echo "github.event.repository.homepage: ${{ github.event.repository.homepage }}"
+          echo "github.event.repository.html_url: ${{ github.event.repository.html_url }}"
+          echo "github.event.ref: ${{ github.event.ref }}"
+
+          ROOT_DIR=`echo ${GITHUB_REPOSITORY} | sed -e "s/^${GITHUB_REPOSITORY_OWNER}\///"`
+          echo "APP_PREFIX=/${ROOT_DIR}/${GITHUB_REF_NAME}"
+          echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${GITHUB_REF_NAME}"
+
+          SANITIZED_REF_NAME=$(printf '%s\n' "${GITHUB_REF_NAME}" | sed -e 's/[\/&]/\\&/g')
+          echo "| [${GITHUB_REF_NAME}](${GITHUB_REF_NAME}) | [\`${GITHUB_SHA}\`](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}) |"
+
           echo "github.event: ${{ toJSON(github.event) }}"
 
   publish:
