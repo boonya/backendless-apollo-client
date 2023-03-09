@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - wf/test
 
 permissions:
   contents: write
@@ -20,22 +19,9 @@ env:
   MD_FILE: index.md
   SHA: ${{ github.event.after }} # sha hash of head
   REF_NAME: ${{ github.head_ref || github.ref_name }} # branch or tag name
+  STORYBOOK_URL: ${{ github.event.repository.homepage }}${{ github.head_ref || github.ref_name }}
 
 jobs:
-  debug:
-    name: Debug
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print env context
-        run: |
-          echo "${{ toJSON(env) }}"
-      - name: Print github.event context
-        run: |
-          echo "${{ toJSON(github.event) }}"
-      - name: Print github context
-        run: |
-          echo "${{ toJSON(github) }}"
-
   publish:
     name: Checkout, build & publish
     runs-on: ubuntu-latest
@@ -99,5 +85,5 @@ jobs:
           edit-mode: replace
           body: |
             ### You can play with these changes at [the separate instance of storybook deployed.][1]
-            [1]: ${{ github.event.repository.homepage }}${{ github.head_ref }}
+            [1]: ${{ env.STORYBOOK_URL }}
           reactions: rocket
