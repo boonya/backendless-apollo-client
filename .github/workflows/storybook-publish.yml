@@ -20,18 +20,14 @@ env:
   MD_FILE: index.md
   SHA: ${{ github.event.after }} # sha hash of head
   REF_NAME: ${{ github.head_ref || github.ref_name }} # branch or tag name
+  APP_PREFIX: /${REPO_NAME}/${REF_NAME}
+  STORYBOOK_STATIC_TARGET: /${GH_PAGES_FOLDER}/${REF_NAME}
 
 jobs:
   debug:
     name: Debug
     runs-on: ubuntu-latest
     steps:
-      # ref: refs/heads/wf
-      # refs/heads/wf
-      #
-      # refs/heads/<branch_name>,
-      # for pull requests it is refs/pull/<pr_number>/merge,
-      # and for tags it is refs/tags/<tag_name>.
       - run: |
           echo "Debug step..."
 
@@ -53,44 +49,6 @@ jobs:
 
           SANITIZED_REF_NAME=$(printf '%s\n' "${REF_NAME}" | sed -e 's/[\/&]/\\&/g')
           echo "| [${REF_NAME}](${GH_PAGES_URL}${REF_NAME}) | [\`${SHA}\`](${REPO_URL}/tree/${SHA}) |"
-
-          echo "\n\n"
-
-          echo "github.event_name: ${{ github.event_name }}"
-          echo "github.base_ref: ${{ github.base_ref }}"
-          echo "github.head_ref: ${{ github.head_ref }}"
-          echo "github.ref: ${{ github.ref }}"
-          echo "github.ref_name: ${{ github.ref_name }}"
-
-          echo "github.event.repository.homepage: ${{ github.event.repository.homepage }}"
-          echo "github.event.repository.html_url: ${{ github.event.repository.html_url }}"
-          echo "github.event.ref: ${{ github.event.ref }}"
-          echo "github.event.pull_request.head.ref: ${{ github.event.pull_request.head.ref }}"
-          echo "branch name: ${{ github.event.pull_request.head.ref || github.event.ref }}"
-          echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
-          echo "GITHUB_REF: ${GITHUB_REF}"
-
-          echo "env.REF_NAME: ${{ env.REF_NAME }}"
-          echo "REF_NAME: ${REF_NAME}"
-
-          echo "\n\n"
-
-          ROOT_DIR=`echo ${GITHUB_REPOSITORY} | sed -e "s/^${GITHUB_REPOSITORY_OWNER}\///"`
-          echo "APP_PREFIX: /${ROOT_DIR}/${REF_NAME}"
-          echo "STORYBOOK_STATIC_TARGET: /${GH_PAGES_FOLDER}/${REF_NAME}"
-
-          echo "\n\n"
-
-          SANITIZED_REF_NAME=$(printf '%s\n' "${REF_NAME}" | sed -e 's/[\/&]/\\&/g')
-          echo "| [${REF_NAME}](${GH_PAGES_URL}${REF_NAME}) | [\`${SHA}\`](${REPO_URL}/tree/${SHA}) |"
-
-          echo "\n\n"
-
-          SANITIZED_REF_NAME=$(printf '%s\n' "${REF_NAME}" | sed -e 's/[\/&]/\\&/g')
-          echo "| [${REF_NAME}](${GH_PAGES_URL}${REF_NAME}) | [\[#${{ github.event.pull_request.number }}\] ${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }}) |"
-
-          echo "\n\n"
-
       - run: |
           echo "github: ${{ toJSON(github) }}"
       - run: |
@@ -108,9 +66,6 @@ jobs:
         run: |
           echo "APP_PREFIX=/${REPO_NAME}/${REF_NAME}" >> $GITHUB_ENV
           echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${REF_NAME}" >> $GITHUB_ENV
-
-          # echo "APP_PREFIX=/${{ github.event.pull_request.base.repo.name }}/${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
-          # echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
       - run: npm ci
       - name: "Run storybook build"
         run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
