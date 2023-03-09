@@ -14,8 +14,11 @@ permissions:
 env:
   GH_PAGES_BRANCH: docs
   GH_PAGES_FOLDER: docs
+  GH_PAGES_URL: ${{ github.event.repository.homepage }} # https://boonya.github.io/backendless-apollo-client/
   MD_FILE: index.md
-  REF_NAME: ${{ github.event.pull_request.head.ref || github.ref_name }}
+  REPO_URL: ${{ github.event.repository.html_url }} # https://github.com/boonya/backendless-apollo-client
+  REF_NAME: ${{ github.head_ref || github.ref_name }} # branch or tag name
+  SHA: ${{ github.event.after }} # sha hash of head
 
 jobs:
   debug:
@@ -31,6 +34,14 @@ jobs:
       - run: |
           echo "Debug step..."
 
+          echo "GH_PAGES_BRANCH: ${GH_PAGES_BRANCH}"
+          echo "GH_PAGES_FOLDER: ${GH_PAGES_FOLDER}"
+          echo "GH_PAGES_URL: ${GH_PAGES_URL}"
+          echo "MD_FILE: ${MD_FILE}"
+          echo "REPO_URL: ${REPO_URL}"
+          echo "REF_NAME: ${REF_NAME}"
+          echo "SHA: ${SHA}"
+
           echo "github.event_name: ${{ github.event_name }}"
           echo "github.base_ref: ${{ github.base_ref }}"
           echo "github.head_ref: ${{ github.head_ref }}"
@@ -44,15 +55,23 @@ jobs:
           echo "branch name: ${{ github.event.pull_request.head.ref || github.event.ref }}"
           echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
           echo "GITHUB_REF: ${GITHUB_REF}"
-          echo "REF_NAME: ${{ env.REF_NAME }}"
+
+          echo "env.REF_NAME: ${{ env.REF_NAME }}"
+          echo "REF_NAME: ${REF_NAME}"
 
           ROOT_DIR=`echo ${GITHUB_REPOSITORY} | sed -e "s/^${GITHUB_REPOSITORY_OWNER}\///"`
-          echo "APP_PREFIX=/${ROOT_DIR}/${GITHUB_REF_NAME}"
-          echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${GITHUB_REF_NAME}"
+          echo "APP_PREFIX: /${ROOT_DIR}/${REF_NAME}"
+          echo "STORYBOOK_STATIC_TARGET: /${GH_PAGES_FOLDER}/${REF_NAME}"
 
-          SANITIZED_REF_NAME=$(printf '%s\n' "${GITHUB_REF_NAME}" | sed -e 's/[\/&]/\\&/g')
-          echo "| [${GITHUB_REF_NAME}](${GITHUB_REF_NAME}) | [\`${GITHUB_SHA}\`](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}) |"
+          SANITIZED_REF_NAME=$(printf '%s\n' "${REF_NAME}" | sed -e 's/[\/&]/\\&/g')
+          echo "| [${REF_NAME}](${GH_PAGES_URL}${REF_NAME}) | [\`${SHA}\`](${REPO_URL}/tree/${SHA}) |"
 
+          SANITIZED_REF_NAME=$(printf '%s\n' "${REF_NAME}" | sed -e 's/[\/&]/\\&/g')
+          echo "| [${REF_NAME}](${GH_PAGES_URL}${REF_NAME}) | [\[#${{ github.event.pull_request.number }}\] ${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }}) |"
+
+      - run: |
+          echo "github: ${{ toJSON(github) }}"
+      - run: |
           echo "github.event: ${{ toJSON(github.event) }}"
 
   publish:
