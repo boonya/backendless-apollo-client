@@ -22,38 +22,6 @@ env:
   REF_NAME: ${{ github.head_ref || github.ref_name }} # branch or tag name
 
 jobs:
-  debug:
-    name: Debug
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "Debug step..."
-
-          echo "REPO_URL: ${REPO_URL}"
-          echo "REPO_NAME: ${REPO_NAME}"
-          echo "GH_PAGES_BRANCH: ${GH_PAGES_BRANCH}"
-          echo "GH_PAGES_FOLDER: ${GH_PAGES_FOLDER}"
-          echo "GH_PAGES_URL: ${GH_PAGES_URL}"
-          echo "MD_FILE: ${MD_FILE}"
-          echo "SHA: ${SHA}"
-          echo "REF_NAME: ${REF_NAME}"
-          echo "APP_PREFIX: ${APP_PREFIX}"
-          echo "STORYBOOK_STATIC_TARGET: ${STORYBOOK_STATIC_TARGET}"
-
-          echo "\n\n"
-
-          echo "APP_PREFIX: /${REPO_NAME}/${REF_NAME}"
-          echo "STORYBOOK_STATIC_TARGET: /${GH_PAGES_FOLDER}/${REF_NAME}"
-
-          echo "\n\n"
-
-          SANITIZED_REF_NAME=$(printf '%s\n' "${REF_NAME}" | sed -e 's/[\/&]/\\&/g')
-          echo "| [${REF_NAME}](${GH_PAGES_URL}${REF_NAME}) | [\`${SHA}\`](${REPO_URL}/tree/${SHA}) |"
-      - run: |
-          echo "github: ${{ toJSON(github) }}"
-      - run: |
-          echo "github.event: ${{ toJSON(github.event) }}"
-
   publish:
     name: Checkout, build & publish
     runs-on: ubuntu-latest
@@ -117,5 +85,5 @@ jobs:
           edit-mode: replace
           body: |
             ### You can play with these changes at [the separate instance of storybook deployed.][1]
-            [1]: ${{ github.event.pull_request.base.repo.homepage }}${{ github.event.pull_request.head.ref }}
+            [1]: ${{ github.event.repository.html_url }}${{ github.head_ref }}
           reactions: rocket
