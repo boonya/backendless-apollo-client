@@ -14,7 +14,7 @@ function render() {
 }
 
 it('initial', () => {
-	useQuery.mockReturnValue(makeQueryResult({}));
+	useQuery.mockReturnValue(makeQueryResult());
 
 	const {result} = render();
 

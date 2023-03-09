@@ -21,7 +21,7 @@ function render() {
 
 describe('should interpolate response on to the context', () => {
 	it('initially', () => {
-		useQuery.mockReturnValue(makeQueryResult({}));
+		useQuery.mockReturnValue(makeQueryResult());
 
 		render();
 
