@@ -39,6 +39,8 @@ jobs:
           echo "MD_FILE: ${MD_FILE}"
           echo "SHA: ${SHA}"
           echo "REF_NAME: ${REF_NAME}"
+          echo "APP_PREFIX: ${APP_PREFIX}"
+          echo "STORYBOOK_STATIC_TARGET: ${STORYBOOK_STATIC_TARGET}"
 
           echo "\n\n"
 
