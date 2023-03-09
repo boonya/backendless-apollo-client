@@ -1,12 +1,11 @@
 name: Publishing storybook 🎨
 
 on:
-  push:
-    branches-ignore:
-      - docs
+  pull_request:
 
 permissions:
   contents: write
+  pull-requests: write
 
 env:
   GH_PAGES_BRANCH: docs
@@ -24,9 +23,8 @@ jobs:
           node-version-file: ".nvmrc"
       - name: "Prepare variables"
         run: |
-          ROOT_DIR=`echo ${GITHUB_REPOSITORY} | sed -e "s/^${GITHUB_REPOSITORY_OWNER}\///"`
-          echo "APP_PREFIX=/${ROOT_DIR}/${GITHUB_REF_NAME}" >> $GITHUB_ENV
-          echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${GITHUB_REF_NAME}" >> $GITHUB_ENV
+          echo "APP_PREFIX=/${{ github.event.pull_request.base.repo.name }}/${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+          echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
       - run: npm ci
       - name: "Run storybook build"
         run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
@@ -35,10 +33,10 @@ jobs:
         with:
           branch: ${{ env.GH_PAGES_BRANCH }}
           folder: storybook-static
-          target-folder: ${{ env.STORYBOOK_STATIC_TARGET}}
+          target-folder: ${{ env.STORYBOOK_STATIC_TARGET }}
 
   readme:
-    needs: [publish]
+    needs: publish
     name: "Update a catalog"
     runs-on: ubuntu-latest
     steps:
@@ -47,12 +45,35 @@ jobs:
           ref: ${{ env.GH_PAGES_BRANCH }}
       - name: "Update a catalog file"
         run: |
-          SANITIZED_REF_NAME=$(printf '%s\n' "${GITHUB_REF_NAME}" | sed -e 's/[\/&]/\\&/g')
+          SANITIZED_REF_NAME=$(printf '%s\n' "${{ github.event.pull_request.head.ref }}" | sed -e 's/[\/&]/\\&/g')
           sed -i "/\[${SANITIZED_REF_NAME}\]/d" ${GH_PAGES_FOLDER}/${MD_FILE}
-          echo "| [${GITHUB_REF_NAME}](${GITHUB_REF_NAME}) | [\`${GITHUB_SHA}\`](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_SHA}) |" >> ${GH_PAGES_FOLDER}/${MD_FILE}
+          echo "| [${{ github.event.pull_request.head.ref }}](${{ github.event.pull_request.base.repo.homepage }}${{ github.event.pull_request.head.ref }}) | [\[#${{ github.event.pull_request.number }}\] ${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }}) |" >> ${GH_PAGES_FOLDER}/${MD_FILE}
       - name: "Publish changes"
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           branch: ${{ env.GH_PAGES_BRANCH }}
           folder: ${{ env.GH_PAGES_FOLDER }}
           target-folder: ${{ env.GH_PAGES_FOLDER }}
+
+  comment:
+    needs: publish
+    name: "Add a comment to the PR"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: instance of storybook deployed
+      - name: Create of update a comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ### You can play with these changes at [the separate instance of storybook deployed.][1]
+            [1]: ${{ github.event.pull_request.base.repo.homepage }}${{ github.event.pull_request.head.ref }}
+          reactions: rocket
