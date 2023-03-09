@@ -6,14 +6,10 @@ import {renderComponent} from '@test/render';
 
 jest.mock('@src/providers/FetchMe/ContextProvider');
 
-function render() {
-	return renderComponent(<Greetings />);
-}
-
 it('should render progressbar.', () => {
 	useMeContext.mockReturnValue({loading: true});
 
-	render();
+	renderComponent(<Greetings />);
 
 	expect(screen.queryByText(/Hello/u)).not.toBeInTheDocument();
 	screen.getByRole('progressbar');
@@ -22,15 +18,15 @@ it('should render progressbar.', () => {
 it('should render user name.', () => {
 	useMeContext.mockReturnValue(ME_DATA);
 
-	render();
+	renderComponent(<Greetings component="h1" />);
 
-	screen.getByText('Hello, Dude Dudovich!');
+	screen.getByRole('heading', {name: 'Hello, Dude Dudovich!'});
 });
 
 it('should render "Dude" as a fallback value.', () => {
 	useMeContext.mockReturnValue({});
 
-	render();
+	renderComponent(<Greetings component="h1" />);
 
-	screen.getByText('Hello, Mr(s)!');
+	screen.getByRole('heading', {name: 'Hello, Mr(s)!'});
 });
