@@ -17,6 +17,16 @@ env:
   MD_FILE: index.md
 
 jobs:
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Debug step"
+          echo "github.event_name: ${{ github.event_name }}"
+          echo "github.event.push: ${{ toJSON(github.event.push) }}"
+          echo "github.event: ${{ toJSON(github.event) }}"
+
   publish:
     name: Checkout, build & publish
     runs-on: ubuntu-latest
@@ -61,7 +71,7 @@ jobs:
 
   comment:
     needs: publish
-    if: ${{ github.event == pull_request }}
+    if: ${{ github.event_name == 'pull_request' }}
     name: "Add a comment to the PR"
     runs-on: ubuntu-latest
     steps:
