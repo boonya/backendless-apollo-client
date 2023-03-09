@@ -2,15 +2,24 @@ name: Publishing storybook 🎨
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
   pull-requests: write
 
 env:
+  REPO_URL: ${{ github.event.repository.html_url }} # https://github.com/boonya/backendless-apollo-client
+  REPO_NAME: ${{ github.event.repository.name }} # backendless-apollo-client
+  GH_PAGES_URL: ${{ github.event.repository.homepage }} # https://boonya.github.io/backendless-apollo-client/
   GH_PAGES_BRANCH: docs
   GH_PAGES_FOLDER: docs
   MD_FILE: index.md
+  SHA: ${{ github.event.after }} # sha hash of head
+  REF_NAME: ${{ github.head_ref || github.ref_name }} # branch or tag name
+  STORYBOOK_URL: ${{ github.event.repository.homepage }}${{ github.head_ref || github.ref_name }}
 
 jobs:
   publish:
@@ -23,8 +32,8 @@ jobs:
           node-version-file: ".nvmrc"
       - name: "Prepare variables"
         run: |
-          echo "APP_PREFIX=/${{ github.event.pull_request.base.repo.name }}/${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
-          echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${{ github.event.pull_request.head.ref }}" >> $GITHUB_ENV
+          echo "APP_PREFIX=/${REPO_NAME}/${REF_NAME}" >> $GITHUB_ENV
+          echo "STORYBOOK_STATIC_TARGET=/${GH_PAGES_FOLDER}/${REF_NAME}" >> $GITHUB_ENV
       - run: npm ci
       - name: "Run storybook build"
         run: APP_PREFIX=${APP_PREFIX} npm run storybook:build
@@ -45,9 +54,9 @@ jobs:
           ref: ${{ env.GH_PAGES_BRANCH }}
       - name: "Update a catalog file"
         run: |
-          SANITIZED_REF_NAME=$(printf '%s\n' "${{ github.event.pull_request.head.ref }}" | sed -e 's/[\/&]/\\&/g')
+          SANITIZED_REF_NAME=$(printf '%s\n' "${REF_NAME}" | sed -e 's/[\/&]/\\&/g')
           sed -i "/\[${SANITIZED_REF_NAME}\]/d" ${GH_PAGES_FOLDER}/${MD_FILE}
-          echo "| [${{ github.event.pull_request.head.ref }}](${{ github.event.pull_request.base.repo.homepage }}${{ github.event.pull_request.head.ref }}) | [\[#${{ github.event.pull_request.number }}\] ${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }}) |" >> ${GH_PAGES_FOLDER}/${MD_FILE}
+          echo "| [${REF_NAME}](${GH_PAGES_URL}${REF_NAME}) | [\`${SHA}\`](${REPO_URL}/tree/${SHA}) |" >> ${GH_PAGES_FOLDER}/${MD_FILE}
       - name: "Publish changes"
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
@@ -57,6 +66,7 @@ jobs:
 
   comment:
     needs: publish
+    if: ${{ github.event_name == 'pull_request' }}
     name: "Add a comment to the PR"
     runs-on: ubuntu-latest
     steps:
@@ -75,5 +85,5 @@ jobs:
           edit-mode: replace
           body: |
             ### You can play with these changes at [the separate instance of storybook deployed.][1]
-            [1]: ${{ github.event.pull_request.base.repo.homepage }}${{ github.event.pull_request.head.ref }}
+            [1]: ${{ env.STORYBOOK_URL }}
           reactions: rocket
