@@ -2,6 +2,10 @@ name: Publishing storybook 🎨
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
+      - wf # Do not forget to remove it
 
 permissions:
   contents: write
@@ -57,6 +61,7 @@ jobs:
 
   comment:
     needs: publish
+    if: ${{ github.event == pull_request }}
     name: "Add a comment to the PR"
     runs-on: ubuntu-latest
     steps:
