@@ -84,5 +84,5 @@ jobs:
           edit-mode: replace
           body: |
             ### You can play with these changes at [the separate instance of storybook deployed.][1]
-            [1]: ${{ github.event.repository.html_url }}${{ github.head_ref }}
+            [1]: ${{ github.event.repository.homepage }}${{ github.head_ref }}
           reactions: rocket
