@@ -15,7 +15,7 @@ env:
   GH_PAGES_BRANCH: docs
   GH_PAGES_FOLDER: docs
   MD_FILE: index.md
-  REF_NAME: ${{ github.event.pull_request.head.ref || github.event.ref }}
+  REF_NAME: ${{ github.event.pull_request.head.ref || github.ref_name }}
 
 jobs:
   debug:
@@ -44,7 +44,7 @@ jobs:
           echo "branch name: ${{ github.event.pull_request.head.ref || github.event.ref }}"
           echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
           echo "GITHUB_REF: ${GITHUB_REF}"
-          echo "REF_NAME: ${env.REF_NAME}"
+          echo "REF_NAME: ${{ env.REF_NAME }}"
 
           ROOT_DIR=`echo ${GITHUB_REPOSITORY} | sed -e "s/^${GITHUB_REPOSITORY_OWNER}\///"`
           echo "APP_PREFIX=/${ROOT_DIR}/${GITHUB_REF_NAME}"
