@@ -21,6 +21,17 @@ env:
   REF_NAME: ${{ github.head_ref || github.ref_name }} # branch or tag name
 
 jobs:
+  debug:
+    name: Checkout, build & publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print github.event context
+        run: |
+          echo ${{ toJSON(github.event) }}
+      - name: Print github context
+        run: |
+          echo ${{ toJSON(github) }}
+
   publish:
     name: Checkout, build & publish
     runs-on: ubuntu-latest
