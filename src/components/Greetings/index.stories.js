@@ -1,9 +1,9 @@
 import Greetings from '.';
 import {within} from '@storybook/testing-library';
 import wrapper from '@sb/decorators/wrapper';
-import MeContextProvider from '@src/providers/Me/ContextProvider';
-import ERROR_DATA from '@src/providers/Me/__data__/ValidationError';
-import SUCCESSFUL_DATA from '@src/providers/Me/__data__/success';
+import MeContextProvider from '@src/providers/FetchMe/ContextProvider';
+import ERROR_DATA from '@src/providers/FetchMe/__data__/ValidationError';
+import SUCCESSFUL_DATA from '@src/providers/FetchMe/__data__/success';
 
 export default {component: Greetings};
 

@@ -12,7 +12,7 @@
     "start": "webpack serve --config config/webpack.start.js",
     "build": "webpack --config config/webpack.build.js",
     "lint": "eslint . .storybook",
-    "test": "jest .",
+    "test": "jest",
     "test:ci": "jest --coverage --coverageReporters=text --verbose",
     "graphql-codegen": "graphql-codegen --config .graphql-codegen.yml",
     "storybook": "start-storybook -p 6006",

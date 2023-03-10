@@ -1,4 +1,4 @@
-import QueryFetchMe from './FetchMe.gql';
+import QUERY from './FetchMe.gql';
 import {useQuery} from '@apollo/client';
 import pick from 'lodash.pick';
 import PropTypes from 'prop-types';
@@ -14,25 +14,29 @@ export const ME_SHAPE = {
 };
 
 function extract({data}) {
-	const result = pick(data?.viewer, Object.keys(ME_SHAPE));
-
-	if (!result) {
-		return null;
-	}
+	const {updatedAt, createdAt, ...rest} = pick(data.viewer, Object.keys(ME_SHAPE));
 
 	return {
-		...result,
-		updatedAt: result?.updatedAt && new Date(result.updatedAt),
-		createdAt: result?.createdAt && new Date(result.createdAt),
+		...rest,
+		updatedAt: updatedAt && new Date(updatedAt),
+		createdAt: createdAt && new Date(createdAt),
 	};
 }
 
 export default function useFetch() {
-	const state = useQuery(QueryFetchMe);
+	const {data, loading, error} = useQuery(QUERY);
 
-	return {
-		data: state.data && extract(state),
-		loading: Boolean(state.loading),
-		error: state.error,
-	};
+	try {
+		return {
+			data: data && extract({data}),
+			loading,
+			error,
+		};
+	}
+	catch (cause) {
+		return {
+			loading,
+			error: cause,
+		};
+	}
 }

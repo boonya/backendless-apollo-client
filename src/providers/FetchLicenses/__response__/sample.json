@@ -1,0 +1,21 @@
+{
+  "data": {
+    "licenses": [
+      {
+        "id": "MDc6TGljZW5zZTU=",
+        "key": "bsd-3-clause",
+        "name": "BSD 3-Clause \"New\" or \"Revised\" License"
+      },
+      {
+        "id": "MDc6TGljZW5zZTEz",
+        "key": "mit",
+        "name": "MIT License"
+      },
+      {
+        "id": "MDc6TGljZW5zZTE1",
+        "key": "unlicense",
+        "name": "The Unlicense"
+      }
+    ]
+  }
+}

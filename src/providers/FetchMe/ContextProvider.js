@@ -5,7 +5,7 @@ import useSafeContext from '@src/hooks/useSafeContext';
 
 const MeContext = createContext();
 
-export function useMe() {
+export function useMeContext() {
 	return useSafeContext(MeContext);
 }
 
@@ -16,8 +16,6 @@ export default function ContextProvider({children, ...props}) {
 		</MeContext.Provider>
 	);
 }
-
-ContextProvider.displayName = 'Me.ContextProvider';
 
 ContextProvider.propTypes = {
 	children: PropTypes.node.isRequired,
