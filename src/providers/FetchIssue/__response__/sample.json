@@ -1,0 +1,42 @@
+{
+  "data": {
+    "repository": {
+      "id": "R_kgDOJDgP4w",
+      "issue": {
+        "id": "I_kwDOJDgP485hHYw_",
+        "number": 9,
+        "title": "The issue created for demo purpose",
+        "body": "",
+        "url": "https://github.com/boonya/backendless-apollo-client/issues/9",
+        "state": "OPEN",
+        "createdAt": "2023-03-17T13:31:46Z",
+        "updatedAt": "2023-03-17T13:35:16Z",
+        "author": {
+          "login": "boonya",
+          "__typename": "User"
+        },
+        "reactions": {
+          "nodes": [
+            {
+              "id": "REA_lAHOJDgP485hHYw_zgru-Jg",
+              "content": "HOORAY",
+              "__typename": "Reaction"
+            }
+          ],
+          "totalCount": 1,
+          "pageInfo": {
+            "endCursor": "Y3Vyc29yOnYyOpHOCu75XQ==",
+            "hasNextPage": false,
+            "hasPreviousPage": false,
+            "startCursor": "Y3Vyc29yOnYyOpHOCu74mA==",
+            "__typename": "PageInfo"
+          },
+          "__typename": "ReactionConnection"
+        },
+        "__typename": "Issue"
+      },
+      "__typename": "Repository"
+    },
+    "__typename": "Query"
+  }
+}

@@ -1,6 +1,7 @@
 import {initialize, mswDecorator} from 'msw-storybook-addon';
 import withApollo from '@sb/decorators/withApollo';
 import withRouter from '@sb/decorators/withRouter';
+import withStyle from '@sb/decorators/withStyle';
 import withTheme, {getThemeToolbar} from '@sb/decorators/withTheme';
 
 // Initialize MSW
@@ -10,11 +11,7 @@ initialize({
 });
 
 export const decorators = [
-	(Story, {parameters}) => (
-		<div style={parameters.style}>
-			<Story />
-		</div>
-	),
+	withStyle(),
 	withTheme(),
 	withApollo(),
 	withRouter(),

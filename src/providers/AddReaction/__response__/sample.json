@@ -1,0 +1,13 @@
+{
+  "data": {
+    "addReaction": {
+      "reaction": {
+        "id": "REA_lAHOJDgP485hHYw_zgrvBM4",
+        "content": "ROCKET",
+        "__typename": "Reaction"
+      },
+      "__typename": "AddReactionPayload"
+    },
+    "__typename": "Mutation"
+  }
+}
