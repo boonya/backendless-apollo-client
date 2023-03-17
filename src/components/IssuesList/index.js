@@ -1,10 +1,13 @@
+import './index.css';
 import Meta from './Meta';
+import {generatePath, Link, useParams} from 'react-router-dom';
+import ROUTES from '@src/ROUTES';
 import GeneralError from '@src/components/GeneralError';
 import Progressbar from '@src/components/Progressbar';
 import {useFetchIssuesContext} from '@src/providers/FetchIssues/ContextProvider';
-import './index.css';
 
 export default function IssuesList(props) {
+	const {name, owner} = useParams();
 	const {data, loading, error} = useFetchIssuesContext();
 
 	if (loading) {
@@ -27,7 +30,7 @@ export default function IssuesList(props) {
 		>
 			{data.issues.map(({id, number, title, createdAt, author}) => (
 				<li key={id}>
-					#{number} {title}
+					<Link to={generatePath(ROUTES.issue, {name, owner, number})}>#{number} {title}</Link>
 					{' '}
 					<Meta createdAt={createdAt} author={author} />
 				</li>
