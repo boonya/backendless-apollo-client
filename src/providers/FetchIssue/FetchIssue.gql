@@ -1,0 +1,18 @@
+query FetchIssue($number: Int!, $name: String!, $owner: String!) {
+	repository(name: $name, owner: $owner) {
+		id
+		issue(number: $number) {
+			id
+			number
+			title
+			state
+			body
+			url
+			createdAt
+			updatedAt
+			author {
+				login
+			}
+		}
+	}
+}

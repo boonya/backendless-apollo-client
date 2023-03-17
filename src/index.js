@@ -9,7 +9,7 @@ import ApolloProvider from '@src/providers/Apollo';
 import ThemeProvider from '@src/providers/Theme';
 
 const Repo = lazy(() => import(/* webpackChunkName: "modules/Repo" */'@src/modules/Repo'));
-// const Issue = lazy(() => import(/* webpackChunkName: "modules/Issue" */'@src/modules/Issue'));
+const Issue = lazy(() => import(/* webpackChunkName: "modules/Issue" */'@src/modules/Issue'));
 
 const baseRoute = generatePath(ROUTES.repo, {name: 'backendless-apollo-client', owner: 'boonya'});
 
@@ -24,7 +24,7 @@ root.render(
 							<Routes>
 								<Route index element={<Navigate to={baseRoute} replace />} />
 								<Route path={ROUTES.repo} element={<Repo />} />
-								{/* <Route path={ROUTES.issue} element={<Issue />} /> */}
+								<Route path={ROUTES.issue} element={<Issue />} />
 								<Route path="*" element={<NotFound />} />
 							</Routes>
 						</Suspense>
