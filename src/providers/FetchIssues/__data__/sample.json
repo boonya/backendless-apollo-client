@@ -1,0 +1,19 @@
+{
+  "data": {
+    "issues": [
+      {
+        "id": "I_kwDOJDgP485hHYw_",
+        "number": 9,
+        "title": "The issue created for demo purpose",
+        "author": "boonya"
+      }
+    ],
+    "pageInfo": {
+      "endCursor": "Y3Vyc29yOnYyOpHOYR2MPw==",
+      "hasNextPage": false,
+      "hasPreviousPage": false,
+      "startCursor": "Y3Vyc29yOnYyOpHOYR2MPw=="
+    },
+    "totalCount": 1
+  }
+}

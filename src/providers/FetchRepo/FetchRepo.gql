@@ -1,4 +1,4 @@
-query Repository($name: String!, $owner: String!, $languages: Int = 5) {
+query FetchRepo($name: String!, $owner: String!, $languages: Int = 5) {
 	repository(name: $name, owner: $owner) {
 		id
 		name
