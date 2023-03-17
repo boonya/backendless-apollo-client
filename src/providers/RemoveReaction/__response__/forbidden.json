@@ -1,0 +1,21 @@
+{
+  "data": {
+    "removeReaction": null,
+    "__typename": "Mutation"
+  },
+  "errors": [
+    {
+      "type": "FORBIDDEN",
+      "path": [
+        "removeReaction"
+      ],
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "message": "boonya does not have the correct permissions to execute `RemoveReaction`"
+    }
+  ]
+}
