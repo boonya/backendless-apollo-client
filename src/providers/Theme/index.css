@@ -1,11 +1,11 @@
 :root {
-	--light-background-color: #ffffff;
-	--light-text-color: #2f446c;
-	--light-link-color: #0c5e75;
+	--light-background-color: 255, 255, 255;
+	--light-text-color: 47, 68, 108;
+	--light-link-color: 12, 94, 117;
 
-	--dark-background-color: #282c34;
-	--dark-text-color: #ffffff;
-	--dark-link-color: #61dafb;
+	--dark-background-color: 40, 44, 52;
+	--dark-text-color: 255, 255, 255;
+	--dark-link-color: 97, 218, 251;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,12 +39,12 @@ body {
 		"Helvetica Neue", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: var(--background-color);
-	color: var(--text-color);
+	background-color: rgb(var(--background-color));
+	color: rgb(var(--text-color));
 }
 
 a {
-	color: var(--link-color);
+	color: rgb(var(--link-color));
 }
 
 code {

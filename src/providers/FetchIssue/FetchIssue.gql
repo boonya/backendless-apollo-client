@@ -1,17 +1,29 @@
-query FetchIssue($number: Int!, $name: String!, $owner: String!) {
+query FetchIssue(
+	$number: Int!
+	$name: String!
+	$owner: String!
+	$reactions: Int = 10
+) {
 	repository(name: $name, owner: $owner) {
 		id
 		issue(number: $number) {
 			id
 			number
 			title
-			state
 			body
 			url
+			state
 			createdAt
 			updatedAt
 			author {
 				login
+			}
+			reactions(first: $reactions) {
+				nodes {
+					id
+					content
+				}
+				totalCount
 			}
 		}
 	}

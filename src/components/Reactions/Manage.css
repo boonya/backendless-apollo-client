@@ -1,0 +1,24 @@
+.manage-reactions {
+	position: relative;
+}
+
+.manage-reactions summary {
+	display: inline;
+	cursor: pointer;
+}
+
+.manage-reactions summary > svg {
+	height: 24px;
+	width: 24px;
+	fill: rgb(var(--link-color));
+}
+
+.manage-reactions ul {
+	position: absolute;
+	left: 32px;
+	top: 32px;
+	padding: 16px 8px;
+	border: 1px solid rgba(var(--link-color), 0.3);
+	background-color: rgb(var(--background-color));
+	border-radius: 8px;
+}

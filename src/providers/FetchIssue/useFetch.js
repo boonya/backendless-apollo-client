@@ -2,7 +2,12 @@ import QUERY from './FetchIssue.gql';
 import {useQuery} from '@apollo/client';
 import pick from 'lodash.pick';
 import PropTypes from 'prop-types';
-import {ISSUE_STATE} from '@src/constants';
+import {ISSUE_STATE, REACTION_CONTENT} from '@src/constants';
+
+export const REACTION_SHAPE = {
+	id: PropTypes.string.isRequired,
+	content: PropTypes.oneOf(Object.values(REACTION_CONTENT)).isRequired,
+};
 
 export const ISSUE_SHAPE = {
 	id: PropTypes.string.isRequired,
@@ -14,16 +19,20 @@ export const ISSUE_SHAPE = {
 	createdAt: PropTypes.instanceOf(Date).isRequired,
 	updatedAt: PropTypes.instanceOf(Date).isRequired,
 	author: PropTypes.string.isRequired,
+	reactions: PropTypes.arrayOf(PropTypes.shape(REACTION_SHAPE)).isRequired,
+	totalReactions: PropTypes.number.isRequired,
 };
 
 function extract({data}) {
-	const {createdAt, updatedAt, author, ...rest} = pick(data.repository.issue, Object.keys(ISSUE_SHAPE));
+	const {createdAt, updatedAt, author, reactions, ...rest} = pick(data.repository.issue, Object.keys(ISSUE_SHAPE));
 
 	return {
 		...rest,
 		createdAt: createdAt && new Date(createdAt),
 		updatedAt: updatedAt && new Date(updatedAt),
 		author: author.login,
+		reactions: reactions.nodes.map((node) => pick(node, Object.keys(REACTION_SHAPE))),
+		totalReactions: reactions.totalCount,
 	};
 }
 

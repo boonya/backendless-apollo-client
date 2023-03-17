@@ -4,7 +4,7 @@ import {createContext, useContext} from 'react';
 
 const FetchIssueContext = createContext();
 
-export function useFetchissueContext() {
+export function useFetchIssueContext() {
 	return useContext(FetchIssueContext);
 }
 
