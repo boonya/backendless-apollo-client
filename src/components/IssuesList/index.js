@@ -11,19 +11,24 @@ export default function IssuesList(props) {
 		return <Progressbar {...props} />;
 	}
 
-	if (error && !data || !data?.issues) {
+	if (error && !data?.issues) {
 		return <GeneralError {...props}>Something went wrong</GeneralError>;
 	}
 
 	if (!data.issues.length) {
-		return <GeneralError {...props}>No issues</GeneralError>;
+		return <GeneralError {...props}>No issues found</GeneralError>;
 	}
 
 	return (
-		<ul className="issues">
+		<ul
+			className="issues"
+			aria-label="Issues list"
+			{...props}
+		>
 			{data.issues.map(({id, number, title, createdAt, author}) => (
 				<li key={id}>
 					#{number} {title}
+					{' '}
 					<Meta createdAt={createdAt} author={author} />
 				</li>
 			))}

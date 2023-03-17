@@ -8,7 +8,7 @@ import {renderComponent} from '@test/render';
 jest.mock('@src/providers/FetchRepo/ContextProvider');
 
 function Component(props) {
-	return <RepoDetails data-testid="repo-details" {...props} />;
+	return <RepoDetails data-testid="container" {...props} />;
 }
 
 it('should render component.', () => {
@@ -16,7 +16,7 @@ it('should render component.', () => {
 
 	renderComponent(<Component />);
 
-	expect(screen.getByTestId('repo-details')).toBe(screen.getByRole('heading', {name: 'No data'}));
+	expect(screen.getByTestId('container')).toBe(screen.getByRole('heading', {name: 'No data'}));
 });
 
 it('should render preloader.', () => {
@@ -24,7 +24,7 @@ it('should render preloader.', () => {
 
 	renderComponent(<Component />);
 
-	expect(screen.getByTestId('repo-details')).toBe(screen.getByRole('progressbar', {name: 'Please wait'}));
+	expect(screen.getByTestId('container')).toBe(screen.getByRole('progressbar', {name: 'Please wait'}));
 });
 
 it('should render error message.', () => {
@@ -32,7 +32,7 @@ it('should render error message.', () => {
 
 	renderComponent(<Component />);
 
-	expect(screen.getByTestId('repo-details')).toBe(screen.getByRole('heading', {name: 'Something went wrong'}));
+	expect(screen.getByTestId('container')).toBe(screen.getByRole('heading', {name: 'Something went wrong'}));
 });
 
 it('should render data region.', () => {
@@ -40,7 +40,7 @@ it('should render data region.', () => {
 
 	renderComponent(<Component />);
 
-	expect(screen.getByTestId('repo-details')).toBe(screen.getByRole('region', {
+	expect(screen.getByTestId('container')).toBe(screen.getByRole('region', {
 		name: 'backendless-apollo-client',
 		description: 'How to do a Frontend Ahead of Backend demo project',
 	}));

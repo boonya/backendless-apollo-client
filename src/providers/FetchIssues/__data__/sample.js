@@ -8,13 +8,20 @@ export default {
 				author: 'boonya',
 				createdAt: new Date('2023-03-17T13:31:46Z'),
 			},
+			{
+				id: 'I_kwDOJDgP485hIYn7',
+				number: 10,
+				title: 'Yet another demo issue',
+				createdAt: new Date('2023-03-17T16:20:38Z'),
+				author: 'boonya',
+			},
 		],
 		pageInfo: {
-			endCursor: 'Y3Vyc29yOnYyOpHOYR2MPw==',
+			endCursor: 'Y3Vyc29yOnYyOpHOYSGJ-w==',
 			hasNextPage: false,
 			hasPreviousPage: false,
 			startCursor: 'Y3Vyc29yOnYyOpHOYR2MPw==',
 		},
-		totalCount: 1,
+		totalCount: 2,
 	},
 };

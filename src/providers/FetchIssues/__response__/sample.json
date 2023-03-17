@@ -8,22 +8,33 @@
             "id": "I_kwDOJDgP485hHYw_",
             "number": 9,
             "title": "The issue created for demo purpose",
+            "createdAt": "2023-03-17T13:31:46Z",
             "author": {
               "login": "boonya",
               "__typename": "User"
             },
-            "createdAt": "2023-03-17T13:31:46Z",
+            "__typename": "Issue"
+          },
+          {
+            "id": "I_kwDOJDgP485hIYn7",
+            "number": 10,
+            "title": "Yet another demo issue",
+            "createdAt": "2023-03-17T16:20:38Z",
+            "author": {
+              "login": "boonya",
+              "__typename": "User"
+            },
             "__typename": "Issue"
           }
         ],
         "pageInfo": {
-          "endCursor": "Y3Vyc29yOnYyOpHOYR2MPw==",
+          "endCursor": "Y3Vyc29yOnYyOpHOYSGJ-w==",
           "hasNextPage": false,
           "hasPreviousPage": false,
           "startCursor": "Y3Vyc29yOnYyOpHOYR2MPw==",
           "__typename": "PageInfo"
         },
-        "totalCount": 1,
+        "totalCount": 2,
         "__typename": "IssueConnection"
       },
       "__typename": "Repository"
