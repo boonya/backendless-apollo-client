@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import Progressbar from '@src/components/Progressbar';
-import {useMeContext} from '@src/providers/FetchMe/ContextProvider';
+import {useFetchMeContext} from '@src/providers/FetchMe/ContextProvider';
 
 export default function Greetings({component: Component}) {
-	const {data, loading} = useMeContext();
+	const {data, loading} = useFetchMeContext();
 
 	if (loading) {
 		return <Progressbar />;

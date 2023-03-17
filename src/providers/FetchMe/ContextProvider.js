@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import {createContext} from 'react';
 import useSafeContext from '@src/hooks/useSafeContext';
 
-const MeContext = createContext();
+const FetchMeContext = createContext();
 
-export function useMeContext() {
-	return useSafeContext(MeContext);
+export function useFetchMeContext() {
+	return useSafeContext(FetchMeContext);
 }
 
 export default function ContextProvider({children, ...props}) {
 	return (
-		<MeContext.Provider value={props}>
+		<FetchMeContext.Provider value={props}>
 			{children}
-		</MeContext.Provider>
+		</FetchMeContext.Provider>
 	);
 }
 

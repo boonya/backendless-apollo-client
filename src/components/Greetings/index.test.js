@@ -1,13 +1,13 @@
 import Greetings from '.';
 import {screen} from '@testing-library/react';
-import {useMeContext} from '@src/providers/FetchMe/ContextProvider';
+import {useFetchMeContext} from '@src/providers/FetchMe/ContextProvider';
 import ME_DATA from '@src/providers/FetchMe/__data__/success';
 import {renderComponent} from '@test/render';
 
 jest.mock('@src/providers/FetchMe/ContextProvider');
 
 it('should render progressbar.', () => {
-	useMeContext.mockReturnValue({loading: true});
+	useFetchMeContext.mockReturnValue({loading: true});
 
 	renderComponent(<Greetings />);
 
@@ -16,7 +16,7 @@ it('should render progressbar.', () => {
 });
 
 it('should render user name.', () => {
-	useMeContext.mockReturnValue(ME_DATA);
+	useFetchMeContext.mockReturnValue(ME_DATA);
 
 	renderComponent(<Greetings component="h1" />);
 
@@ -24,7 +24,7 @@ it('should render user name.', () => {
 });
 
 it('should render "Dude" as a fallback value.', () => {
-	useMeContext.mockReturnValue({});
+	useFetchMeContext.mockReturnValue({});
 
 	renderComponent(<Greetings component="h1" />);
 
