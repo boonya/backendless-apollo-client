@@ -1,0 +1,9 @@
+.issues {
+	display: flex;
+	flex-direction: column;
+}
+
+.issues button {
+	display: block;
+	margin: 0 auto;
+}

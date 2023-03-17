@@ -1,7 +1,0 @@
-query FetchLicenses {
-	licenses {
-		id
-		key
-		name
-	}
-}

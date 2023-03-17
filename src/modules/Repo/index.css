@@ -1,0 +1,19 @@
+.repo {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.repo header {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(16px + 1vmin);
+	padding: 16px;
+}
+
+.repo main {
+	padding: 32px;
+}

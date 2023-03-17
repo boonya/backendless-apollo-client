@@ -1,4 +1,6 @@
+const repo = ':owner/:name';
 export default {
 	home: '/',
-	license: '/license/:key',
+	repo,
+	issue: `${repo}/issue/:id`,
 };
