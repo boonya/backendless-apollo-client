@@ -1,0 +1,7 @@
+.issues {
+}
+
+.issues > li > span {
+	display: inline-block;
+	margin-left: 24px;
+}

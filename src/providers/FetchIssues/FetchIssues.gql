@@ -6,6 +6,7 @@ query FetchIssues($name: String!, $owner: String!, $first: Int = 10) {
 				id
 				number
 				title
+				createdAt
 				author {
 					login
 				}

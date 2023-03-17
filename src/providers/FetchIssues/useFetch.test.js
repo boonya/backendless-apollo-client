@@ -1,5 +1,5 @@
 import QUERY from './FetchIssues.gql';
-import DATA from './__data__/sample.json';
+import DATA from './__data__/sample';
 import RESPONSE from './__response__/sample.json';
 import useFetch from './useFetch';
 import {useQuery} from '@apollo/client';

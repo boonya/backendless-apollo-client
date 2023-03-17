@@ -9,13 +9,18 @@ export const ISSUE_SHAPE = {
 	number: PropTypes.number.isRequired,
 	title: PropTypes.string.isRequired,
 	author: PropTypes.string.isRequired,
+	createdAt: PropTypes.instanceOf(Date).isRequired,
 };
 
 function extract({data}) {
 	const {nodes, pageInfo, totalCount} = data.repository.issues;
 	const issues = nodes.map((node) => {
-		const {author, ...rest} = pick(node, Object.keys(ISSUE_SHAPE));
-		return {...rest, author: author.login};
+		const {author, createdAt, ...rest} = pick(node, Object.keys(ISSUE_SHAPE));
+		return {
+			...rest,
+			author: author.login,
+			createdAt: createdAt && new Date(createdAt),
+		};
 	});
 	return {
 		issues,

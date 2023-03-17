@@ -41,9 +41,9 @@ function createWrapper(options = {}) {
 }
 
 function extractOptions(options) {
-	const {windowWidth, lng, i18n, wrapper, decorators, ...original} = options || {};
+	const {windowWidth, lng, i18n, wrapper, decorators, router, ...original} = options || {};
 	return {
-		wrapper: {windowWidth, lng, i18n, wrapper, decorators},
+		wrapper: {windowWidth, lng, i18n, wrapper, decorators, router},
 		original,
 	};
 }

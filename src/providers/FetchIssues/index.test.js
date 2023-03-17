@@ -1,6 +1,6 @@
 import FetchRepoProvider from '.';
 import ContextProvider from './ContextProvider';
-import DATA from './__data__/sample.json';
+import DATA from './__data__/sample';
 import useFetch from './useFetch';
 import {renderComponent} from '@test/render';
 
