@@ -1,3 +1,4 @@
+import RESPONSE from '../__response__/half-error.json';
 import {makeApolloError} from '@test/helpers';
 
 export default {
@@ -20,14 +21,5 @@ export default {
 			avatarUrl: 'https://avatars.githubusercontent.com/u/779184?v=4',
 		},
 	},
-	error: makeApolloError([{
-		message: 'You must provide a `first` or `last` value to properly paginate the `languages` connection.',
-		name: 'Error',
-		time_thrown: '2022-10-06T14:05:34.367Z',
-		data: {
-			error: 'ValidationError',
-			code: 'GRAPHQL_VALIDATION_FAILED',
-			message: 'You must provide a `first` or `last` value to properly paginate the `languages` connection.',
-		},
-	}]),
+	error: makeApolloError(RESPONSE.errors),
 };

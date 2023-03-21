@@ -69,7 +69,7 @@ it('successful', () => {
 
 	const {result} = render();
 
-	expect(result.current).toEqual({...SUCCESSFUL_RESULT, loading: false});
+	expect(result.current).toEqual({data: SUCCESSFUL_RESULT.data, loading: false});
 });
 
 it('error', () => {
@@ -77,7 +77,7 @@ it('error', () => {
 
 	const {result} = render();
 
-	expect(result.current).toEqual({...ERROR_RESULT, loading: false});
+	expect(result.current).toEqual({error: ERROR_RESULT.error, loading: false});
 });
 
 it('half error', () => {
@@ -85,5 +85,5 @@ it('half error', () => {
 
 	const {result} = render();
 
-	expect(result.current).toEqual({...HALF_ERROR_RESULT, loading: false});
+	expect(result.current).toEqual({data: HALF_ERROR_RESULT.data, error: HALF_ERROR_RESULT.error, loading: false});
 });

@@ -23,7 +23,7 @@ export const ISSUE_SHAPE = {
 	totalReactions: PropTypes.number.isRequired,
 };
 
-function extract({data}) {
+function extractData(data) {
 	const {createdAt, updatedAt, author, reactions, ...rest} = pick(data.repository.issue, Object.keys(ISSUE_SHAPE));
 
 	return {
@@ -36,20 +36,24 @@ function extract({data}) {
 	};
 }
 
-export default function useFetch(variables, options) {
-	const {data, loading, error} = useQuery(QUERY, {variables, ...options});
-
+function extract({data, loading, error}) {
 	try {
 		return {
-			data: data && extract({data}),
+			data: data && extractData(data),
 			loading,
 			error,
 		};
 	}
-	catch (cause) {
+	catch (err) {
 		return {
 			loading,
-			error: cause,
+			error: error || err,
 		};
 	}
+}
+
+export default function useFetch(variables, options) {
+	const result = useQuery(QUERY, {variables, ...options});
+
+	return extract(result);
 }

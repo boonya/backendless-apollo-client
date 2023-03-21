@@ -12,7 +12,7 @@ export const ISSUE_SHAPE = {
 	createdAt: PropTypes.instanceOf(Date).isRequired,
 };
 
-function extract({data}) {
+function extractData(data) {
 	const {nodes, pageInfo, totalCount} = data.repository.issues;
 	const issues = nodes.map((node) => {
 		const {author, createdAt, ...rest} = pick(node, Object.keys(ISSUE_SHAPE));
@@ -29,20 +29,24 @@ function extract({data}) {
 	};
 }
 
-export default function useFetch(variables, options) {
-	const {data, loading, error} = useQuery(QUERY, {variables, ...options});
-
+function extract({data, loading, error}) {
 	try {
 		return {
-			data: data && extract({data}),
+			data: data && extractData(data),
 			loading,
 			error,
 		};
 	}
-	catch (cause) {
+	catch (err) {
 		return {
 			loading,
-			error: cause,
+			error: error || err,
 		};
 	}
+}
+
+export default function useFetch(variables, options) {
+	const result = useQuery(QUERY, {variables, ...options});
+
+	return extract(result);
 }

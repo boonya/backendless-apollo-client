@@ -34,7 +34,7 @@ export const REPO_SHAPE = {
 	owner: PropTypes.shape(OWNER_SHAPE).isRequired,
 };
 
-function extract({data}) {
+function extractData(data) {
 	const {createdAt, languages, licenseInfo, owner, ...rest} = pick(data.repository, Object.keys(REPO_SHAPE));
 
 	return {
@@ -46,20 +46,24 @@ function extract({data}) {
 	};
 }
 
-export default function useFetch(variables, options) {
-	const {data, loading, error} = useQuery(QUERY, {variables, ...options});
-
+function extract({data, loading, error}) {
 	try {
 		return {
-			data: data && extract({data}),
+			data: data && extractData(data),
 			loading,
 			error,
 		};
 	}
-	catch (cause) {
+	catch (err) {
 		return {
 			loading,
-			error: cause,
+			error: error || err,
 		};
 	}
+}
+
+export default function useFetch(variables, options) {
+	const result = useQuery(QUERY, {variables, ...options});
+
+	return extract(result);
 }
