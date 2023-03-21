@@ -2,6 +2,7 @@ export const ISSUE_STATE = {
 	closed: 'CLOSED',
 	open: 'OPEN',
 };
+export const ISSUE_STATES = Object.values(ISSUE_STATE);
 
 export const REACTION_CONTENT = {
 	confused: 'CONFUSED',

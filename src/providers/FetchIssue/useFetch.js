@@ -2,18 +2,18 @@ import QUERY from './FetchIssue.gql';
 import {useQuery} from '@apollo/client';
 import pick from 'lodash.pick';
 import PropTypes from 'prop-types';
-import {ISSUE_STATE, REACTION_CONTENT} from '@src/constants';
+import {ISSUE_STATES, REACTIONS} from '@src/constants';
 
 export const REACTION_SHAPE = {
 	id: PropTypes.string.isRequired,
-	content: PropTypes.oneOf(Object.values(REACTION_CONTENT)).isRequired,
+	content: PropTypes.oneOf(REACTIONS).isRequired,
 };
 
 export const ISSUE_SHAPE = {
 	id: PropTypes.string.isRequired,
 	number: PropTypes.number.isRequired,
 	title: PropTypes.string.isRequired,
-	state: PropTypes.oneOf(Object.values(ISSUE_STATE)).isRequired,
+	state: PropTypes.oneOf(ISSUE_STATES).isRequired,
 	body: PropTypes.string.isRequired,
 	url: PropTypes.string.isRequired,
 	createdAt: PropTypes.instanceOf(Date).isRequired,
