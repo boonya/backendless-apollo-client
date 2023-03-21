@@ -15,7 +15,6 @@ export default function Reactions({selected, onAdd, onRemove, ...props}) {
 
 Reactions.propTypes = {
 	onAdd: PropTypes.func.isRequired,
-	onClick: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
 	selected: PropTypes.arrayOf(PropTypes.oneOf(REACTIONS)),
 };
