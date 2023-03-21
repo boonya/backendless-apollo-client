@@ -38,6 +38,7 @@ export default function Emoji({name, onClick, selected, ...props}) {
 			role={role}
 			aria-label={name}
 			onClick={handleClick}
+			aria-pressed={selected}
 			{...props}
 		>
 			{icon}

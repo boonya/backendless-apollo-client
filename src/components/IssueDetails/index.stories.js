@@ -1,13 +1,24 @@
 import Component from '.';
 import wrapper from '@sb/decorators/wrapper';
+import {mutation} from '@sb/msw';
+import ADD_REACTION_MUTATION from '@src/providers/AddReaction/AddReaction.gql';
+import ADD_REACTION_RESPONSE from '@src/providers/AddReaction/__response__/sample.json';
 import FetchIssueContextProvider from '@src/providers/FetchIssue/ContextProvider';
-import DATA from '@src/providers/FetchIssue/__data__/sample';
+import ISSUE_DATA from '@src/providers/FetchIssue/__data__/sample';
+import REMOVE_REACTION_MUTATION from '@src/providers/RemoveReaction/RemoveReaction.gql';
+import REMOVE_REACTION_RESPONSE from '@src/providers/RemoveReaction/__response__/sample.json';
 
-export default {component: Component};
+export default {
+	component: Component,
+	parameters: {msw: {handlers: {
+		ADD_REACTION_MUTATION: mutation(ADD_REACTION_MUTATION, ADD_REACTION_RESPONSE),
+		REMOVE_REACTION_MUTATION: mutation(REMOVE_REACTION_MUTATION, REMOVE_REACTION_RESPONSE),
+	}}},
+};
 
 export function IssueDetails(args) {
 	return <Component {...args} />;
 }
 IssueDetails.decorators = [
-	wrapper(DATA, FetchIssueContextProvider),
+	wrapper(ISSUE_DATA, FetchIssueContextProvider),
 ];
