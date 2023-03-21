@@ -5,7 +5,6 @@ class GraphQLError extends ExtendableError {
 	constructor(cause) {
 		super();
 		this.name = 'Error';
-		this.cause = cause.__typename;
 		this.message = cause.message;
 		this.data = cause;
 		// eslint-disable-next-line babel/camelcase, camelcase

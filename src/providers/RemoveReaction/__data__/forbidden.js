@@ -1,4 +1,4 @@
-import RESPONSE from '../__response__/error.json';
+import RESPONSE from '../__response__/forbidden.json';
 import {makeApolloError} from '@test/helpers';
 
 export default {
