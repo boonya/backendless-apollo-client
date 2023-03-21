@@ -1,6 +1,5 @@
 import QUERY from './FetchRepo.gql';
 import {useQuery} from '@apollo/client';
-import omit from 'lodash.omit';
 import pick from 'lodash.pick';
 import PropTypes from 'prop-types';
 
