@@ -22,3 +22,23 @@ export function IssueDetails(args) {
 IssueDetails.decorators = [
 	wrapper(ISSUE_DATA, FetchIssueContextProvider),
 ];
+
+export function AddReactionFail(args) {
+	return <Component {...args} />;
+}
+AddReactionFail.decorators = [
+	wrapper(ISSUE_DATA, FetchIssueContextProvider),
+];
+AddReactionFail.parameters = {msw: {handlers: {
+	ADD_REACTION_MUTATION: mutation(ADD_REACTION_MUTATION, {errors: [{message: 'Failed to add reaction.'}]}),
+}}};
+
+export function RemoveReactionFail(args) {
+	return <Component {...args} />;
+}
+RemoveReactionFail.decorators = [
+	wrapper(ISSUE_DATA, FetchIssueContextProvider),
+];
+RemoveReactionFail.parameters = {msw: {handlers: {
+	REMOVE_REACTION_MUTATION: mutation(REMOVE_REACTION_MUTATION, {errors: [{message: 'Failed to remove reaction.'}]}),
+}}};

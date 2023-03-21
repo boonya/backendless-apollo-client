@@ -13,12 +13,24 @@ export default function Container(props) {
 	const {id, number, title, body, url, reactions} = data;
 	const selectedReactions = reactions.map(({content}) => content);
 
-	const onAdd = useCallback((reaction) => {
-		addReaction({issueId: id, reaction});
+	const onAdd = useCallback(async (reaction) => {
+		try {
+			await addReaction({issueId: id, reaction});
+		}
+		catch (err) {
+			// eslint-disable-next-line no-alert
+			alert(err.message);
+		}
 	}, [addReaction, id]);
 
-	const onRemove = useCallback((reaction) => {
-		removeReaction({issueId: id, reaction});
+	const onRemove = useCallback(async (reaction) => {
+		try {
+			await removeReaction({issueId: id, reaction});
+		}
+		catch (err) {
+			// eslint-disable-next-line no-alert
+			alert(err.message);
+		}
 	}, [id, removeReaction]);
 
 	return (
