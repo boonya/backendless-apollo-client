@@ -40,8 +40,8 @@ module.exports = {
 				new webpack.DefinePlugin({
 					NODE_ENV: JSON.stringify(NODE_ENV),
 					APP_PREFIX: JSON.stringify(APP_PREFIX),
-					GITHUB_API_URL: '<undefined>',
-					GITHUB_API_TOKEN: '<undefined>',
+					API_URL: '<undefined>',
+					API_TOKEN: '<undefined>',
 				}),
 			],
 			module: {

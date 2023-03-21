@@ -8,8 +8,8 @@ module.exports = {
 	globals: {
 		NODE_ENV: true,
 		APP_PREFIX: true,
-		GITHUB_API_URL: true,
-		GITHUB_API_TOKEN: true,
+		API_URL: true,
+		API_TOKEN: true,
 	},
 	parser: '@babel/eslint-parser',
 	parserOptions: {
