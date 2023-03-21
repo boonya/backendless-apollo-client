@@ -1,4 +1,4 @@
-const {NODE_ENV, APP_PREFIX, GITHUB_API_URL, GITHUB_API_TOKEN} = require('./env');
+const {NODE_ENV, APP_PREFIX, API_URL, API_TOKEN} = require('./env');
 const {
 	buildDir,
 	htmlEntry,
@@ -34,8 +34,8 @@ module.exports = {
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify(NODE_ENV),
 			APP_PREFIX: JSON.stringify(APP_PREFIX),
-			GITHUB_API_URL: JSON.stringify(GITHUB_API_URL),
-			GITHUB_API_TOKEN: JSON.stringify(GITHUB_API_TOKEN),
+			API_URL: JSON.stringify(API_URL),
+			API_TOKEN: JSON.stringify(API_TOKEN),
 		}),
 		new CopyPlugin({patterns: [{
 			from: publicDir,

@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import {logError} from '@src/utils/logger';
 
 const httpLink = createHttpLink({
-	uri: GITHUB_API_URL,
+	uri: API_URL,
 });
 
 const authLink = setContext((_, {headers}) => {
-	const token = GITHUB_API_TOKEN;
+	const token = API_TOKEN;
 	if (!token?.trim()) {
 		logError('Auth token:')(`To authenticate requests, please generate a **new personal auth token** from https://github.com/settings/tokens with the following scopes:
 

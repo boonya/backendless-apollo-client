@@ -1,6 +1,5 @@
 import QUERY from './FetchRepo.gql';
 import {useQuery} from '@apollo/client';
-import omit from 'lodash.omit';
 import pick from 'lodash.pick';
 import PropTypes from 'prop-types';
 
@@ -41,9 +40,9 @@ function extract({data}) {
 	return {
 		...rest,
 		createdAt: createdAt && new Date(createdAt),
-		languages: languages?.nodes?.map(({id, name, color}) => ({id, name, color})),
-		licenseInfo: omit(licenseInfo, ['__typename']),
-		owner: omit(owner, ['__typename']),
+		languages: languages?.nodes?.map((node) => pick(node, Object.keys(LANGUAGE_SHAPE))),
+		licenseInfo: pick(licenseInfo, Object.keys(LICENSE_SHAPE)),
+		owner: pick(owner, Object.keys(OWNER_SHAPE)),
 	};
 }
 
