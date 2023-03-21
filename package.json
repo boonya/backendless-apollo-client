@@ -17,7 +17,8 @@
     "graphql-codegen": "graphql-codegen --config .graphql-codegen.yml",
     "storybook": "start-storybook -p 6006",
     "storybook:test": "test-storybook",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook",
+    "chromatic": "chromatic"
   },
   "dependencies": {
     "@apollo/client": "^3.7.9",
@@ -58,6 +59,7 @@
     "babel-loader": "^9.1.2",
     "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-named-asset-import": "^0.3.8",
+    "chromatic": "^6.17.2",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
     "css-mediaquery": "^0.1.2",
