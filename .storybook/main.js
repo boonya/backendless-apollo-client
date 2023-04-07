@@ -10,10 +10,7 @@ const loadersToExclude = [
 const appRules = webpackConfig.module.rules.filter(({test}) => !loadersToExclude.includes(test.toString()));
 
 module.exports = {
-	stories: [
-		'../src/**/*.stories.mdx',
-		'../src/**/*.stories.@(js|jsx|ts|tsx)',
-	],
+	stories: ['../src/**/*.stories.js'],
 	addons: [
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
@@ -27,9 +24,9 @@ module.exports = {
 		from: './public/',
 		to: '/',
 	}],
-	framework: '@storybook/react',
-	core: {
-		builder: '@storybook/builder-webpack5',
+	framework: {
+		name: '@storybook/react-webpack5',
+		options: {},
 	},
 	webpackFinal: ({module, ...config}) => {
 		return {
