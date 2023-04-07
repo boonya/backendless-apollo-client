@@ -1,18 +1,23 @@
 import Component from '.';
-import {REACTIONS, REACTION_CONTENT} from '@src/constants';
+import {REACTION_CONTENT, REACTIONS} from '@src/constants';
 
 export default {
 	component: Component,
 	args: {
 		selected: [REACTION_CONTENT.hooray, REACTION_CONTENT.rocket],
+		pending: [],
 	},
 	argTypes: {
 		selected: {
 			control: 'inline-check',
 			options: REACTIONS,
 		},
-		onAdd: {table: {disable: true}},
-		onRemove: {table: {disable: true}},
+		pending: {
+			control: 'inline-check',
+			options: REACTIONS,
+		},
+		onAdd: {table: {disable: false}},
+		onRemove: {table: {disable: false}},
 	},
 };
 

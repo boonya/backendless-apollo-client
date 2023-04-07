@@ -1,18 +1,10 @@
 .emoji {
-	padding: 8px;
+	/* padding: 8px;
 	border-radius: 50%;
-}
-
-.emoji[role="button"] {
-	cursor: pointer;
-}
-
-.emoji.selected {
-	outline-width: 1px;
-	outline-style: auto;
-	outline-color: rgba(var(--link-color), 0.5);
-}
-
-.emoji[role="button"]:hover {
-	background-color: rgba(var(--link-color), 0.1);
+	display: inline-block;
+	width: 1rem;
+	height: 1rem; */
+	display: inline;
+	font-size: 1rem;
+	/* text-align: center; */
 }

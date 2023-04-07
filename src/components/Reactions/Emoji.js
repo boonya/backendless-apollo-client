@@ -2,8 +2,9 @@ import './Emoji.css';
 import PropTypes from 'prop-types';
 import {useMemo} from 'react';
 import {REACTION_CONTENT, REACTIONS} from '@src/constants';
+import {composeClassNames} from '@src/utils/helpers';
 
-export default function Emoji({name, onClick, selected, ...props}) {
+export default function Emoji({className, name, ...props}) {
 	const icon = useMemo(() => {
 		switch (name) {
 			case REACTION_CONTENT.thumbsUp:
@@ -27,33 +28,28 @@ export default function Emoji({name, onClick, selected, ...props}) {
 		}
 	}, [name]);
 
-	const handleClick = onClick && ((event) => onClick(event, name));
-	const role = handleClick ? 'button' : 'img';
-	const className = selected ? 'emoji selected' : 'emoji';
+	const composedClassName = composeClassNames([
+		'emoji',
+		className,
+	]);
 
-	/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 	return (
 		<span
-			className={className}
-			role={role}
+			className={composedClassName}
+			role="img"
 			aria-label={name}
-			onClick={handleClick}
-			aria-pressed={selected}
 			{...props}
 		>
 			{icon}
 		</span>
 	);
-	/* eslint-enable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 }
 
 Emoji.propTypes = {
+	className: PropTypes.string,
 	name: PropTypes.oneOf(REACTIONS).isRequired,
-	onClick: PropTypes.func,
-	selected: PropTypes.bool,
 };
 
 Emoji.defaultProps = {
-	onClick: undefined,
-	selected: false,
+	className: undefined,
 };

@@ -1,24 +1,34 @@
 import './index.css';
-import List from './List';
-import Manage from './Manage';
+import Button from './Button';
 import PropTypes from 'prop-types';
 import {REACTIONS} from '@src/constants';
 
-export default function Reactions({selected, onAdd, onRemove, ...props}) {
+export default function Reactions({onAdd, onRemove, selected, pending, ...props}) {
 	return (
-		<div className="reactions-container" {...props}>
-			<Manage selected={selected} onAdd={onAdd} onRemove={onRemove} />
-			<List aria-label="Selected reactions" reactions={selected} />
-		</div>
+		<ul aria-label="Reactions" className="reactions" {...props}>
+			{REACTIONS.map((name) => (
+				<li key={name}>
+					<Button
+						name={name}
+						onAdd={onAdd}
+						onRemove={onRemove}
+						selected={selected.includes(name)}
+						pending={pending.includes(name)}
+					/>
+				</li>
+			))}
+		</ul>
 	);
 }
 
 Reactions.propTypes = {
 	onAdd: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
+	pending: PropTypes.arrayOf(PropTypes.oneOf(REACTIONS)),
 	selected: PropTypes.arrayOf(PropTypes.oneOf(REACTIONS)),
 };
 
 Reactions.defaultProps = {
+	pending: [],
 	selected: [],
 };

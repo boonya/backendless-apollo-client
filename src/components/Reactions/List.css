@@ -1,7 +1,0 @@
-ul.reactions {
-	display: inline-flex;
-	list-style: none;
-	column-gap: 16px;
-	margin: 0;
-	padding: 0;
-}

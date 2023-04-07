@@ -1,4 +1,7 @@
-.reactions-container {
-	display: flex;
-	column-gap: 16px;
+ul.reactions {
+	display: inline-flex;
+	list-style: none;
+	column-gap: 4px;
+	margin: 0;
+	padding: 0;
 }

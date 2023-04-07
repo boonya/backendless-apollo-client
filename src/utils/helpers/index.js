@@ -8,3 +8,9 @@ export class ExtendableError extends Error {
 		this.name = this.constructor.name;
 	}
 }
+
+export function composeClassNames(array) {
+	return array
+		.filter((v) => typeof v === 'string' && v.trim())
+		.join(' ');
+}
