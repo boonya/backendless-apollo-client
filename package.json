@@ -83,6 +83,7 @@
     "jest-environment-jsdom": "^29.5.0",
     "msw": "^1.2.1",
     "msw-storybook-addon": "^1.8.0",
+    "raw-loader": "^4.0.2",
     "storybook": "^7.0.2",
     "terser-webpack-plugin": "^5.3.7",
     "webpack": "^5.78.0",
