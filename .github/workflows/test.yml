@@ -10,7 +10,7 @@ on:
 
 jobs:
   linting:
-    name: Lint 🔎
+    name: ESLint 🔎
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
