@@ -1,0 +1,18 @@
+env:
+  browser: true
+
+overrides:
+  - files:
+      - "main.js"
+    env:
+      browser: false
+      node: true
+    extends:
+      - "bluedrop/config/node"
+    rules:
+      "node/no-process-env": "off"
+  - files:
+      - "public/mockServiceWorker.js"
+    rules:
+      "eslint-comments/disable-enable-pair": off
+      "eslint-comments/no-unlimited-disable": off

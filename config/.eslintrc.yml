@@ -1,0 +1,8 @@
+env:
+  node: true
+
+extends:
+  - "bluedrop/config/node"
+
+rules:
+  "node/no-process-env": "off"

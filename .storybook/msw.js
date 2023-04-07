@@ -32,7 +32,7 @@ function createMswCallback(_response, options, operation) {
 	};
 }
 
-export function extractOperationName(operation) {
+function extractOperationName(operation) {
 	return operation.definitions[0].name.value;
 }
 
