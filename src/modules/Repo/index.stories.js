@@ -25,6 +25,6 @@ export function SlowQuery() {
 	return <Repo />;
 }
 SlowQuery.parameters = {msw: {handlers: {
-	QueryFetchRepo: query(QueryFetchRepo, REPO_RESPONSE, {delay: 1000}),
-	QueryFetchIssues: query(QueryFetchIssues, ISSUES_RESPONSE, {delay: 1000}),
+	QueryFetchRepo: query(QueryFetchRepo, REPO_RESPONSE, {delay: 2000}),
+	QueryFetchIssues: query(QueryFetchIssues, ISSUES_RESPONSE, {delay: 2000}),
 }}};
