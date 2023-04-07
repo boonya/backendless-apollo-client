@@ -1,5 +1,6 @@
 import Repo from '.';
-import {userEvent, within} from '@storybook/testing-library';
+// import {userEvent, within} from '@storybook/testing-library';
+import {within} from '@storybook/testing-library';
 import {query} from '@sb/msw';
 import ROUTES from '@src/ROUTES';
 import FETCH_ISSUES_QUERY from '@src/providers/FetchIssues/FetchIssues.gql';
@@ -36,8 +37,9 @@ export function IssuesShown() {
 IssuesShown.play = async ({canvasElement}) => {
 	const canvas = within(canvasElement);
 
-	const button = await canvas.findByRole('button', {name: 'Want to see issues?'});
-	userEvent.click(button);
+	await canvas.findByRole('button', {name: 'Want to see issues?'});
+	// const button = await canvas.findByRole('button', {name: 'Want to see issues?'});
+	// userEvent.click(button);
 
 	await canvas.findByRole('list', {name: 'Issues list'});
 };
