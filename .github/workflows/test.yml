@@ -17,8 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
-      - name: Test env setup
-        run: npm ci
+      - run: npm ci
       - run: npm run lint
 
   testing:
@@ -29,6 +28,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
-      - name: Test env setup
-        run: npm ci
+      - run: npm ci
       - run: npm run test:ci
