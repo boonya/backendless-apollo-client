@@ -1,4 +1,4 @@
-name: Verification 👮🏽‍♂️
+name: Test 👮🏽‍♂️
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   linting:
-    name: Linting 🔎
+    name: Lint 🔎
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,7 +22,7 @@ jobs:
       - run: npm run lint
 
   testing:
-    name: Testing 🧪
+    name: Jest 🧪
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
