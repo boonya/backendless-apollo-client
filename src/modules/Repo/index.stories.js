@@ -1,11 +1,10 @@
 import Repo from '.';
-import {expect} from '@storybook/jest';
 import {userEvent, within} from '@storybook/testing-library';
 import {query} from '@sb/msw';
 import ROUTES from '@src/ROUTES';
-import QueryFetchIssues from '@src/providers/FetchIssues/FetchIssues.gql';
+import FETCH_ISSUES_QUERY from '@src/providers/FetchIssues/FetchIssues.gql';
 import ISSUES_RESPONSE from '@src/providers/FetchIssues/__response__/sample.json';
-import QueryFetchRepo from '@src/providers/FetchRepo/FetchRepo.gql';
+import FETCH_REPO_QUERY from '@src/providers/FetchRepo/FetchRepo.gql';
 import REPO_RESPONSE from '@src/providers/FetchRepo/__response__/sample.json';
 
 export default {
@@ -13,8 +12,8 @@ export default {
 	parameters: {
 		router: {route: ROUTES.repo, params: {name: 'repo-name', owner: 'owner-login'}},
 		msw: {handlers: {
-			QueryFetchRepo: query(QueryFetchRepo, REPO_RESPONSE),
-			QueryFetchIssues: query(QueryFetchIssues, ISSUES_RESPONSE),
+			FETCH_REPO_QUERY: query(FETCH_REPO_QUERY, REPO_RESPONSE),
+			FETCH_ISSUES_QUERY: query(FETCH_ISSUES_QUERY, ISSUES_RESPONSE),
 		}},
 	},
 };
@@ -27,8 +26,8 @@ export function SlowQuery() {
 	return <Repo />;
 }
 SlowQuery.parameters = {msw: {handlers: {
-	QueryFetchRepo: query(QueryFetchRepo, REPO_RESPONSE, {delay: 2000}),
-	QueryFetchIssues: query(QueryFetchIssues, ISSUES_RESPONSE, {delay: 2000}),
+	FETCH_REPO_QUERY: query(FETCH_REPO_QUERY, REPO_RESPONSE, {delay: 2000}),
+	FETCH_ISSUES_QUERY: query(FETCH_ISSUES_QUERY, ISSUES_RESPONSE, {delay: 2000}),
 }}};
 
 export function IssuesShown() {
