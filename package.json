@@ -16,7 +16,6 @@
     "test:ci": "jest --coverage --coverageReporters=text --verbose",
     "graphql-codegen": "graphql-codegen --config .graphql-codegen.yml",
     "storybook": "storybook dev -p 6006",
-    "storybook:test": "test-storybook",
     "storybook:build": "storybook build",
     "chromatic": "chromatic --build-script-name storybook:build"
   },
