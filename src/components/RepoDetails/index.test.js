@@ -66,7 +66,7 @@ it('should render "created at" date.', () => {
 	renderComponent(<Component />);
 
 	const datetime = screen.getByLabelText(/Created at/u);
-	expect(datetime).toHaveAccessibleName('Created at 2/28/2023, 12:15:22 PM');
+	expect(datetime).toHaveAccessibleName('Created at 2/28/2023, 12:15:22 PM');
 	expect(datetime).toHaveAttribute('dateTime', '2023-02-28T12:15:22.000Z');
 });
 
