@@ -70,11 +70,6 @@ it('should render details.', () => {
 	const link = screen.getByRole('link', {name: '[#9] The issue created for demo purpose'});
 	expect(link).toHaveAttribute('href', 'https://github.com/boonya/backendless-apollo-client/issues/9');
 	expect(link).toHaveAttribute('target', '_blank');
-
-	const reactions = screen.getByRole('list', {name: 'Selected reactions'});
-	const listitem = within(reactions).getByRole('listitem');
-	expect(listitem).toBeInTheDocument();
-	within(reactions).getByRole('listitem', {name: 'HOORAY'});
 });
 
 it('should render reactions menu.', () => {
@@ -82,7 +77,7 @@ it('should render reactions menu.', () => {
 
 	render(<Component />);
 
-	const group = screen.getByRole('group', {name: 'Add or remove reactions'});
+	const group = screen.getByRole('list', {name: 'Reactions'});
 
 	const unselected = within(group).getAllByRole('button', {pressed: false});
 	expect(unselected).toHaveLength(7);
@@ -103,7 +98,7 @@ it('should handle "add reaction".', () => {
 
 	render(<Component />);
 
-	const group = screen.getByRole('group', {name: 'Add or remove reactions'});
+	const group = screen.getByRole('list', {name: 'Reactions'});
 	const reaction = within(group).getByRole('button', {
 		name: 'ROCKET',
 		pressed: false,
@@ -119,7 +114,7 @@ it('should handle "remove reaction".', () => {
 
 	render(<Component />);
 
-	const group = screen.getByRole('group', {name: 'Add or remove reactions'});
+	const group = screen.getByRole('list', {name: 'Reactions'});
 	const reaction = within(group).getByRole('button', {
 		name: 'HOORAY',
 		pressed: true,

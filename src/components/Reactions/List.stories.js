@@ -1,4 +1,4 @@
-import Component from '.';
+import Component from './List';
 import {REACTION_CONTENT, REACTIONS} from '@src/constants';
 
 export default {
@@ -21,6 +21,6 @@ export default {
 	},
 };
 
-export function Reactions(args) {
+export function List(args) {
 	return <Component {...args} />;
 }
