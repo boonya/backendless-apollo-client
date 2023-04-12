@@ -1,7 +1,7 @@
 # How to do a FrontEnd ahead of BackEnd
 
-If you want tot play with this application on your machine, you have to create your local `.env` file and fill it out with actual secrets.
-Also do not forget to run `nvm use` command to apply appropriate `node` and `npm` versions and install dependencies by `npm i`.
+If you want to play with this application on your machine, you have to create your local `.env` file and fill it out with actual secrets.
+Also do not forget to run `nvm use` command to apply appropriate `node` and `npm` versions and then install dependencies by `npm i`.
 
 ```sh
 cp .env.sample .env
