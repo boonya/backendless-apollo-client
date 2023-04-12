@@ -3,11 +3,8 @@
 ## For the first step we need to have several things
 
 - [Data provider that fetch data from the server, normalize it and serve it to the context.](https://github.com/boonya/backendless-apollo-client/blob/main/src/providers/FetchRepo/index.js)
-
 - [The module to provide data context to the downstream components.](https://github.com/boonya/backendless-apollo-client/blob/main/src/modules/Repo/index.js)
-
 - [The route where we are going to render our module.](https://github.com/boonya/backendless-apollo-client/blob/main/src/index.js#L26)
-
 - [The component to show layout with repo details.](https://github.com/boonya/backendless-apollo-client/blob/main/src/components/RepoDetails/index.js)
 
 ## Second step involves conditional fetching
