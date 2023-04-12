@@ -1,0 +1,80 @@
+root: true
+
+env:
+  es2022: true
+
+globals:
+  NODE_ENV: true
+  APP_PREFIX: true
+  API_URL: true
+  API_TOKEN: true
+
+parser: "@babel/eslint-parser"
+parserOptions:
+  ecmaVersion: 2022
+  sourceType: "module"
+
+extends:
+  - "bluedrop"
+  - "bluedrop/config/babel"
+  - "bluedrop/config/react"
+  - "plugin:compat/recommended"
+  - "plugin:storybook/recommended"
+  - "plugin:testing-library/react"
+  - "plugin:jest-dom/recommended"
+plugins:
+  - "compat"
+  - "testing-library"
+  - "jest-dom"
+
+settings:
+  react:
+    version: "18.2"
+  import/resolver: babel-module
+
+rules:
+  # If you are using eslint-plugin-react, the react/jsx-uses-react and react/react-in-jsx-scope
+  # rules are no longer necessary and can be turned off or removed.
+  # Read more: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
+  react/jsx-uses-react: off
+  react/react-in-jsx-scope: off
+  # END
+  import/no-unassigned-import:
+    - warn
+    - allow:
+        - "**/*.css"
+
+overrides:
+  - files:
+      - "src/**/*.gql"
+    parserOptions:
+      schema: "./src/schema.graphql"
+      operations: "src/**/*.gql"
+    extends: "plugin:@graphql-eslint/operations-recommended"
+  - files:
+      - "*.config.js"
+    env:
+      browser: false
+      node: true
+    extends:
+      - "bluedrop/config/node"
+    rules:
+      "node/no-process-env": "off"
+  - files:
+      - "**/*.test.*"
+      - "**/*.spec.*"
+    env:
+      jest: true
+    globals:
+      global: true
+  - files:
+      - "**/*.stories.*"
+      - "**/*.test.*"
+      - "**/*.spec.*"
+      - ".storybook/**"
+      - "test/**"
+    rules:
+      "import/no-anonymous-default-export": off
+      "react/no-multi-comp": off
+      "react/prop-types": off
+      "react/display-name": off

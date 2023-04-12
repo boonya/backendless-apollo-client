@@ -1,21 +1,19 @@
 import './List.css';
-import Emoji from './Emoji';
+import Button from './Button';
 import PropTypes from 'prop-types';
 import {REACTIONS} from '@src/constants';
 
-export default function List({reactions, onClick, selected, ...props}) {
-	if (!reactions?.length) {
-		return null;
-	}
-
+export default function List({onAdd, onRemove, selected, pending, ...props}) {
 	return (
 		<ul aria-label="Reactions" className="reactions" {...props}>
-			{reactions.map((name) => (
-				<li key={name} aria-label={name}>
-					<Emoji
-						onClick={onClick}
+			{REACTIONS.map((name) => (
+				<li key={name}>
+					<Button
 						name={name}
+						onAdd={onAdd}
+						onRemove={onRemove}
 						selected={selected.includes(name)}
+						pending={pending.includes(name)}
 					/>
 				</li>
 			))}
@@ -24,12 +22,13 @@ export default function List({reactions, onClick, selected, ...props}) {
 }
 
 List.propTypes = {
-	onClick: PropTypes.func,
-	reactions: PropTypes.arrayOf(PropTypes.oneOf(REACTIONS)).isRequired,
+	onAdd: PropTypes.func.isRequired,
+	onRemove: PropTypes.func.isRequired,
+	pending: PropTypes.arrayOf(PropTypes.oneOf(REACTIONS)),
 	selected: PropTypes.arrayOf(PropTypes.oneOf(REACTIONS)),
 };
 
 List.defaultProps = {
-	onClick: undefined,
+	pending: [],
 	selected: [],
 };

@@ -1,0 +1,11 @@
+env:
+  browser: true
+
+overrides:
+  - files:
+      - "**/__response__/**.js"
+      - "**/__data__/**.js"
+    rules:
+      "max-len": off
+      "camelcase": off
+      "babel/camelcase": off

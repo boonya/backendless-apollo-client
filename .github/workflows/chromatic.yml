@@ -14,7 +14,11 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # 👈 Required to retrieve git history
-      - run: npm ci
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install dependencies
+        run: npm ci
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:

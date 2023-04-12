@@ -1,0 +1,16 @@
+env:
+  node: true
+
+overrides:
+  - files:
+      - "setup/**"
+      - "stubs/**"
+      - "transformers/**"
+    extends:
+      - "bluedrop/config/node"
+    rules:
+      "node/no-process-env": "off"
+  - files:
+      - "setup/**"
+    rules:
+      "import/no-unassigned-import": "off"

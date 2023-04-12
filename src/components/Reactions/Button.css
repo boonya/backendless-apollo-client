@@ -1,0 +1,43 @@
+.emoji-button {
+	cursor: pointer;
+	border-radius: 50%;
+	padding: 0;
+	width: 2rem;
+	height: 2rem;
+	border: none;
+	background-color: transparent;
+
+	scale: 1;
+	transition: 0.1s scale ease-in-out;
+}
+.emoji-button:disabled {
+	opacity: 0.7;
+	color: initial;
+}
+.emoji-button:focus {
+	scale: 1.5;
+}
+.emoji-button:hover {
+	scale: 1.5;
+}
+
+.emoji-button.selected {
+	background-color: rgba(var(--link-color), 0.1);
+}
+
+@keyframes emojiPulse {
+	0% {
+		scale: 0.3;
+	}
+	50% {
+		scale: 1;
+	}
+	100% {
+		scale: 0.3;
+	}
+}
+
+.emoji-button.pending {
+	cursor: progress;
+	animation: emojiPulse 1s infinite;
+}

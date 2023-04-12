@@ -1,4 +1,5 @@
 const repo = '/:owner/:name';
+
 export default {
 	home: '/',
 	repo,

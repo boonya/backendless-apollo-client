@@ -1,37 +1,43 @@
-import Repo from '.';
+import Component from '.';
 import {userEvent, within} from '@storybook/testing-library';
 import {query} from '@sb/msw';
 import ROUTES from '@src/ROUTES';
-import FETCH_ISSUES_QUERY from '@src/providers/FetchIssues/FetchIssues.gql';
-import ISSUES_RESPONSE from '@src/providers/FetchIssues/__response__/sample.json';
-import FETCH_REPO_QUERY from '@src/providers/FetchRepo/FetchRepo.gql';
-import REPO_RESPONSE from '@src/providers/FetchRepo/__response__/sample.json';
+import QUERY_FETCH_ISSUES from '@src/providers/FetchIssues/FetchIssues.gql';
+import RESPONSE_FETCH_ISSUES from '@src/providers/FetchIssues/__response__/sample.json';
+import QUERY_FETCH_REPO from '@src/providers/FetchRepo/FetchRepo.gql';
+import RESPONSE_FETCH_REPO from '@src/providers/FetchRepo/__response__/sample.json';
 
 export default {
-	component: Repo,
+	component: Component,
 	parameters: {
-		router: {route: ROUTES.repo, params: {name: 'repo-name', owner: 'owner-login'}},
+		router: {
+			route: ROUTES.repo,
+			params: {
+				owner: 'owner-login',
+				name: 'repo-name',
+			},
+		},
 		msw: {handlers: {
-			FETCH_REPO_QUERY: query(FETCH_REPO_QUERY, REPO_RESPONSE),
-			FETCH_ISSUES_QUERY: query(FETCH_ISSUES_QUERY, ISSUES_RESPONSE),
+			fetchRepo: query(QUERY_FETCH_REPO, RESPONSE_FETCH_REPO),
+			fetchIssues: query(QUERY_FETCH_ISSUES, RESPONSE_FETCH_ISSUES),
 		}},
 	},
 };
 
 export function Fulfilled() {
-	return <Repo />;
+	return <Component />;
 }
 
 export function SlowQuery() {
-	return <Repo />;
+	return <Component />;
 }
 SlowQuery.parameters = {msw: {handlers: {
-	FETCH_REPO_QUERY: query(FETCH_REPO_QUERY, REPO_RESPONSE, {delay: 2000}),
-	FETCH_ISSUES_QUERY: query(FETCH_ISSUES_QUERY, ISSUES_RESPONSE, {delay: 2000}),
+	fetchRepo: query(QUERY_FETCH_REPO, RESPONSE_FETCH_REPO, {delay: 2000}),
+	fetchIssues: query(QUERY_FETCH_ISSUES, RESPONSE_FETCH_ISSUES, {delay: 2000}),
 }}};
 
 export function IssuesShown() {
-	return <Repo />;
+	return <Component />;
 }
 IssuesShown.play = async ({canvasElement}) => {
 	const canvas = within(canvasElement);

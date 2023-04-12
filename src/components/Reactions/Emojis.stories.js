@@ -1,22 +1,14 @@
-import Emoji from './Emoji';
-import {action} from '@storybook/addon-actions';
+import Component from './Emoji';
 import {REACTIONS} from '@src/constants';
 
-export default {
-	component: Emoji,
-	args: {
-		interactive: false,
-		selected: false,
-	},
-};
+export default {component: Component};
 
-export function Emojis({interactive, ...args}) {
-	const onClick = interactive ? action('onClick') : undefined;
+export function Emojis(args) {
 	return (
 		<ul>
 			{REACTIONS.map((name) => (
 				<li key={name}>
-					<Emoji name={name} onClick={onClick} {...args} /> {name}
+					{name} : <Component name={name} {...args} />
 				</li>
 			))}
 		</ul>
