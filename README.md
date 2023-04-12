@@ -65,9 +65,9 @@ First of all we need to imagine some task.
 
 Ambitious enough, right? So let’s go.
 
-![Funny picture "When frontend is ready before backend"](./docs/funny-pic.jpg)
-
 ## How it’s built?
+
+![Funny picture "When frontend is ready before backend"](./docs/funny-pic.jpg)
 
 **************************
 
