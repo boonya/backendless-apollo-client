@@ -7,14 +7,16 @@ export default function Container(props) {
 
 	const {number, title, body, url} = data;
 
-	const labelledBy = 'region-label';
-	const describedBy = 'region-description';
+	const htmlId = 'region';
+	const labelledBy = `${htmlId}-label`;
+	const describedBy = body && `${htmlId}-description`;
 
 	return (
 		<Component
 			component="section"
+			id={htmlId}
 			aria-labelledby={labelledBy}
-			aria-describedby={body && describedBy}
+			aria-describedby={describedBy}
 			{...props}
 		>
 			<h1 id={labelledBy}>
