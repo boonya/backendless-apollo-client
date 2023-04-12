@@ -1,7 +1,5 @@
 # How it’s built?
 
-![Funny picture "When frontend is ready before backend"](./docs/funny-pic.jpg)
-
 For the first step we need to have several things:
 
 ### [@src/providers/FetchRepo](https://github.com/boonya/backendless-apollo-client/blob/main/src/providers/FetchRepo/index.js)

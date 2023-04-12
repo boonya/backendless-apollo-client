@@ -1,5 +1,7 @@
 # How to do a FrontEnd ahead of BackEnd
 
+![Funny picture "When frontend is ready before backend"](/docs/funny-pic.jpg)
+
 ## Problematic
 
 Everybody would like to make the code clear, nice and stable, without being under pressure and not to hurry. But in the real world, business wants us to deliver features as soon as possible. Because of this we have to figure out how to speed up the development process. One of the most obvious ways would be to start development of FrontEnd in parallel with BackEnd. Or even earlier. But how to do that especially if you need to implement a complex page which is going to interact with the API in many different ways?
