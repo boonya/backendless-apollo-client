@@ -1,8 +1,6 @@
-import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
+import ApolloProvider from '@src/providers/Apollo';
 
-const client = new ApolloClient({
-	uri: 'fake-graphql',
-	cache: new InMemoryCache(),
+const ApolloClientProps = {
 	defaultOptions: {
 		watchQuery: {
 			fetchPolicy: 'no-cache',
@@ -13,11 +11,11 @@ const client = new ApolloClient({
 			errorPolicy: 'all',
 		},
 	},
-});
+};
 
-export default function withApollo(props) {
+export default function withApollo() {
 	return (Story) => (
-		<ApolloProvider client={client} {...props}>
+		<ApolloProvider ApolloClientProps={ApolloClientProps}>
 			<Story />
 		</ApolloProvider>
 	);

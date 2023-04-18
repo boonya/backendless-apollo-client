@@ -37,8 +37,8 @@ module.exports = {
 				new webpack.DefinePlugin({
 					NODE_ENV: JSON.stringify(NODE_ENV),
 					APP_PREFIX: JSON.stringify(APP_PREFIX),
-					API_URL: '<undefined>',
-					API_TOKEN: '<undefined>',
+					API_URL: JSON.stringify('fake-graphql'),
+					API_TOKEN: JSON.stringify('fake-token'),
 				}),
 			],
 			module: {

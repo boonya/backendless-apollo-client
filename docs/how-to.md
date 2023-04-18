@@ -2,21 +2,23 @@
 
 ## For the first step we need to have several things
 
-- [Data provider that fetch data from the server, normalize it and serve it to the context.](https://github.com/boonya/backendless-apollo-client/blob/main/src/providers/FetchRepo/index.js)
-- [The module to provide data context to the downstream components.](https://github.com/boonya/backendless-apollo-client/blob/main/src/modules/Repo/index.js)
+- [The data provider that fetches data from the server, normalizes it and serves it to the context.](https://github.com/boonya/backendless-apollo-client/blob/main/src/providers/FetchRepo/index.js)
+- [The module provides a data context to the downstream components.](https://github.com/boonya/backendless-apollo-client/blob/main/src/modules/Repo/index.js)
 - [The route where we are going to render our module.](https://github.com/boonya/backendless-apollo-client/blob/main/src/index.js#L26)
 - [The component to show layout with repo details.](https://github.com/boonya/backendless-apollo-client/blob/main/src/components/RepoDetails/index.js)
+
+[Read more](/docs/step-1.md)
 
 ## Second step involves conditional fetching
 
 - [So we will need to define the module which implements such conditional logic.](https://github.com/boonya/backendless-apollo-client/blob/main/src/modules/Repo/Issues.js)
-- [Data provider to fetch a list of issues, normalize it's data and pass the data to the context.](https://github.com/boonya/backendless-apollo-client/blob/main/src/providers/FetchIssues/index.js)
+- [Data provider to fetch a list of issues, normalize its data and pass the data to the context.](https://github.com/boonya/backendless-apollo-client/blob/main/src/providers/FetchIssues/index.js)
 - [The component to render a layout and data.](https://github.com/boonya/backendless-apollo-client/blob/main/src/components/IssuesList/index.js)
 
 ## To achieve for what we planned in step three
 
-- [We need a route by which we are going to render appropriate module.](https://github.com/boonya/backendless-apollo-client/blob/main/src/index.js#L27)
-- [The module where we serve a context from data provider.](https://github.com/boonya/backendless-apollo-client/blob/main/src/modules/Issue/index.js)
+- [We need a route by which we are going to render the appropriate module.](https://github.com/boonya/backendless-apollo-client/blob/main/src/index.js#L27)
+- [The module where we serve a context from a data provider.](https://github.com/boonya/backendless-apollo-client/blob/main/src/modules/Issue/index.js)
 - [Data provider to fetch and normalize an issue data.](https://github.com/boonya/backendless-apollo-client/blob/main/src/providers/FetchIssue/index.js)
 - [And the component to show that data.](https://github.com/boonya/backendless-apollo-client/blob/main/src/components/IssueDetails/index.js)
 

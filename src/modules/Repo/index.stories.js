@@ -10,6 +10,7 @@ import RESPONSE_FETCH_REPO from '@src/providers/FetchRepo/__response__/sample.js
 export default {
 	component: Component,
 	parameters: {
+		// We know that the module is going to be rendered by specific route.
 		router: {
 			route: ROUTES.repo,
 			params: {
@@ -17,6 +18,7 @@ export default {
 				name: 'repo-name',
 			},
 		},
+		// We know that the module relyes on specific queries.
 		msw: {handlers: {
 			fetchRepo: query(QUERY_FETCH_REPO, RESPONSE_FETCH_REPO),
 			fetchIssues: query(QUERY_FETCH_ISSUES, RESPONSE_FETCH_ISSUES),
@@ -24,10 +26,12 @@ export default {
 	},
 };
 
+// Here we render fullfilled module.
 export function Fulfilled() {
 	return <Component />;
 }
 
+// Here we emulate slow query.
 export function SlowQuery() {
 	return <Component />;
 }
@@ -36,6 +40,7 @@ SlowQuery.parameters = {msw: {handlers: {
 	fetchIssues: query(QUERY_FETCH_ISSUES, RESPONSE_FETCH_ISSUES, {delay: 2000}),
 }}};
 
+// Here we want to see how it looks when a user has clicked the button.
 export function IssuesShown() {
 	return <Component />;
 }
