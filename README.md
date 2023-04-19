@@ -8,17 +8,16 @@ Everybody would like to make the code clear, nice and stable, without being unde
 
 So, here I would try to show you the receipt I used for more than a year and I am happy about it.
 
-## Tech Stack
+## Ingredients
 
-- [React](https://react.dev/) - the base
-- [@apollo/client](https://www.apollographql.com/docs/react/) - GraphQL client and state management
+- [React](https://react.dev/) - as the root of everything with it's awesome context API
+- [@apollo/client](https://www.apollographql.com/docs/react/) - GraphQL client and state management.
 - **or** an alternative library to interact with Rest API - [react-query](https://react-query-v3.tanstack.com/overview)
-- [Storybook](https://storybook.js.org/) - to build UIs in isolation
+- [Storybook](https://storybook.js.org/) - A thing that gives us a power to build UIs in isolation.
 - [Mock Service Worker](https://mswjs.io/) - to mock an API by intercepting requests on the network level.
-- [Jest](https://jestjs.io/) - Testing Framework
+- [Jest](https://jestjs.io/) - Testing Framework.
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) - test UI components in a user-centric way
-- [@testing-library/jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) - custom DOM element matchers for Jest
-- [@testing-library/user-event](https://testing-library.com/docs/user-event/intro) - to simulate user interactions by dispatching the events
+- [@testing-library/jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) - a set of custom DOM element matchers for Jest just to make your life a bit easier.
 
 ## [Architecture](/docs/architecture.md)
 

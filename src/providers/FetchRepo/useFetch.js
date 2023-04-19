@@ -21,6 +21,7 @@ const OWNER_SHAPE = {
 	avatarUrl: PropTypes.string.isRequired,
 };
 
+// PropTypes shape to reuse here and in any other places you may need.
 export const REPO_SHAPE = {
 	id: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
@@ -34,6 +35,13 @@ export const REPO_SHAPE = {
 	owner: PropTypes.shape(OWNER_SHAPE).isRequired,
 };
 
+/**
+ * The function in which we normalize the data.
+ * We are getting rid of the redundant nesting.
+ * Extracting the properties we are interested in only.
+ * Translating Date ISO String value to Date object.
+ * And so on.
+ */
 function extractData(data) {
 	const {createdAt, languages, licenseInfo, owner, ...rest} = pick(data.repository, Object.keys(REPO_SHAPE));
 
@@ -46,6 +54,9 @@ function extractData(data) {
 	};
 }
 
+/**
+ * The function to intercept error in data if there is such.
+ */
 function extract({data, loading, error}) {
 	try {
 		return {

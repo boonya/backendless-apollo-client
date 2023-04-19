@@ -36,13 +36,14 @@ const logErrors = onError(({operation, graphQLErrors, networkError}) => {
 	}
 });
 
-const client = new ApolloClient({
-	link: from([authLink, logErrors, httpLink]),
-	connectToDevTools: true,
-	cache: new InMemoryCache(),
-});
+export default function Apollo({ApolloClientProps, children}) {
+	const client = new ApolloClient({
+		link: from([authLink, logErrors, httpLink]),
+		connectToDevTools: true,
+		cache: new InMemoryCache(),
+		...ApolloClientProps,
+	});
 
-export default function Apollo({children}) {
 	return (
 		<ApolloProvider client={client}>
 			{children}
@@ -51,5 +52,10 @@ export default function Apollo({children}) {
 }
 
 Apollo.propTypes = {
+	ApolloClientProps: PropTypes.shape({}),
 	children: PropTypes.node.isRequired,
+};
+
+Apollo.defaultProps = {
+	ApolloClientProps: undefined,
 };
