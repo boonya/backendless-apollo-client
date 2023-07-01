@@ -2,7 +2,7 @@ import ContextProvider from './ContextProvider';
 import useFetch from './useFetch';
 import PropTypes from 'prop-types';
 
-export default function FetchIssue({name, owner, number, children, options}) {
+export default function Fetch({name, owner, number, children, options}) {
 	const result = useFetch({name, owner, number}, options);
 
 	return (
@@ -12,7 +12,9 @@ export default function FetchIssue({name, owner, number, children, options}) {
 	);
 }
 
-FetchIssue.propTypes = {
+Fetch.displayName = 'FetchIssue';
+
+Fetch.propTypes = {
 	children: PropTypes.node.isRequired,
 	name: PropTypes.string.isRequired,
 	number: PropTypes.number.isRequired,
@@ -20,6 +22,6 @@ FetchIssue.propTypes = {
 	owner: PropTypes.string.isRequired,
 };
 
-FetchIssue.defaultProps = {
+Fetch.defaultProps = {
 	options: undefined,
 };

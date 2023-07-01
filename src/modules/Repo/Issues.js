@@ -4,7 +4,7 @@ import Component from '@src/components/Component';
 import './Issues.css';
 import ErrorBoundary from '@src/components/ErrorBoundary';
 import IssuesList from '@src/components/IssuesList';
-import FetchIssuesDataProvider from '@src/providers/FetchIssues';
+import FetchIssuesDataProvider from '@src/providers/FetchIssues/Fetch';
 import {useFetchRepoContext} from '@src/providers/FetchRepo/ContextProvider';
 
 export default function Issues(props) {

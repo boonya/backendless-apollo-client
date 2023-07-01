@@ -2,7 +2,7 @@ import {generatePath, Link, useParams} from 'react-router-dom';
 import ROUTES from '@src/ROUTES';
 import ErrorBoundary from '@src/components/ErrorBoundary';
 import IssueDetails from '@src/components/IssueDetails';
-import FetchIssueDataProvider from '@src/providers/FetchIssue';
+import FetchIssueDataProvider from '@src/providers/FetchIssue/Fetch';
 
 export default function Issue() {
 	const {name, owner, number} = useParams();

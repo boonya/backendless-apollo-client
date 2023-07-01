@@ -2,7 +2,7 @@ import Issues from './Issues';
 import {fireEvent, screen} from '@testing-library/react';
 import ROUTES from '@src/ROUTES';
 import IssuesList from '@src/components/IssuesList';
-import FetchIssuesDataProvider from '@src/providers/FetchIssues';
+import FetchIssuesDataProvider from '@src/providers/FetchIssues/Fetch';
 import {useFetchRepoContext} from '@src/providers/FetchRepo/ContextProvider';
 import REPO from '@src/providers/FetchRepo/__data__/sample';
 import {renderComponent} from '@test/render';

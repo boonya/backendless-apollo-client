@@ -1,5 +1,5 @@
-import FetchIssueProvider from '.';
 import ContextProvider from './ContextProvider';
+import FetchIssueProvider from './Fetch';
 import RESULT from './__data__/sample';
 import useFetch from './useFetch';
 import {renderComponent} from '@test/render';

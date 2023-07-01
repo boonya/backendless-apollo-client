@@ -2,8 +2,8 @@ import ContextProvider from './ContextProvider';
 import useFetch from './useFetch';
 import PropTypes from 'prop-types';
 
-export default function FetchRepo({name, owner, languages, options, children}) {
-	const result = useFetch({name, owner, languages}, options);
+export default function Fetch({name, owner, first, options, children}) {
+	const result = useFetch({name, owner, first}, options);
 
 	return (
 		<ContextProvider {...result}>
@@ -12,15 +12,17 @@ export default function FetchRepo({name, owner, languages, options, children}) {
 	);
 }
 
-FetchRepo.propTypes = {
+Fetch.displayName = 'FetchIssues';
+
+Fetch.propTypes = {
 	children: PropTypes.node.isRequired,
-	languages: PropTypes.number,
+	first: PropTypes.number,
 	name: PropTypes.string.isRequired,
 	options: PropTypes.shape({}),
 	owner: PropTypes.string.isRequired,
 };
 
-FetchRepo.defaultProps = {
-	languages: undefined,
+Fetch.defaultProps = {
+	first: undefined,
 	options: undefined,
 };

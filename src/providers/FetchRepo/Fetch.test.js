@@ -1,5 +1,5 @@
-import FetchRepoProvider from '.';
 import ContextProvider from './ContextProvider';
+import FetchRepoProvider from './Fetch';
 import ERROR_RESULT from './__data__/error';
 import HALF_ERROR_RESULT from './__data__/half-error';
 import SUCCESSFUL_RESULT from './__data__/sample';
