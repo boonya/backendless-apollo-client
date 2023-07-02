@@ -1,6 +1,6 @@
 import {useCallback, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import Component from '@src/components/Component';
+import ExtendableComponent from '@src/components/ExtendableComponent';
 import './Issues.css';
 import ErrorBoundary from '@src/components/ErrorBoundary';
 import IssuesList from '@src/components/IssuesList';
@@ -21,7 +21,7 @@ export default function Issues(props) {
 
 	return (
 		<ErrorBoundary>
-			<Component className="issues" {...props}>
+			<ExtendableComponent className="issues" {...props}>
 				{!issues && <button type="button" onClick={showIssues}>Want to see issues?</button>}
 				{issues && <button type="button" onClick={hideIssues}>Hide them</button>}
 				{issues && (
@@ -29,7 +29,7 @@ export default function Issues(props) {
 						<IssuesList />
 					</FetchIssuesDataProvider>
 				)}
-			</Component>
+			</ExtendableComponent>
 		</ErrorBoundary>
 	);
 }

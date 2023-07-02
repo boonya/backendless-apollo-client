@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import {forwardRef} from 'react';
 
-const Component = forwardRef(({
+const ExtendableComponent = forwardRef(({
 	component: C,
 	children,
 	...props
@@ -9,15 +9,15 @@ const Component = forwardRef(({
 	return <C ref={ref} {...props}>{children}</C>;
 });
 
-Component.displayName = 'Component';
+ExtendableComponent.displayName = 'ExtendableComponent';
 
-export default Component;
+export default ExtendableComponent;
 
-Component.propTypes = {
+ExtendableComponent.propTypes = {
 	children: PropTypes.node.isRequired,
 	component: PropTypes.elementType,
 };
 
-Component.defaultProps = {
+ExtendableComponent.defaultProps = {
 	component: 'span',
 };

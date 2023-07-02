@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Component from '@src/components/Component';
+import ExtendableComponent from '@src/components/ExtendableComponent';
 import GeneralError from '@src/components/GeneralError';
 import Progressbar from '@src/components/Progressbar';
 import {useFetchRepoContext} from '@src/providers/FetchRepo/ContextProvider';
@@ -21,7 +21,7 @@ export default function RepoDetails({component, ...props}) {
 
 	const {name, description, languages, createdAt, licenseInfo} = data;
 	return (
-		<Component
+		<ExtendableComponent
 			component={component}
 			aria-labelledby="region-label"
 			aria-describedby="region-description"
@@ -48,7 +48,7 @@ export default function RepoDetails({component, ...props}) {
 				</time>
 			</p>
 			<p><a href={licenseInfo.url} target="_blank" rel="noreferrer">{licenseInfo.name}</a></p>
-		</Component>
+		</ExtendableComponent>
 	);
 }
 

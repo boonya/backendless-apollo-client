@@ -1,4 +1,4 @@
-import Component from '@src/components/Component';
+import ExtendableComponent from '@src/components/ExtendableComponent';
 import Reactions from '@src/components/Reactions';
 import {useFetchIssueContext} from '@src/providers/FetchIssue/ContextProvider';
 
@@ -12,7 +12,7 @@ export default function Container(props) {
 	const describedBy = body && `${htmlId}-description`;
 
 	return (
-		<Component
+		<ExtendableComponent
 			component="section"
 			id={htmlId}
 			aria-labelledby={labelledBy}
@@ -24,6 +24,6 @@ export default function Container(props) {
 			</h1>
 			{body && <h2 id={describedBy}>{body}</h2>}
 			<Reactions />
-		</Component>
+		</ExtendableComponent>
 	);
 }

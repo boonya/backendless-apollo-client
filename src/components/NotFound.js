@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import Component from '@src/components/Component';
+import ExtendableComponent from '@src/components/ExtendableComponent';
 
 export default function NotFound(props) {
-	return <Component {...props} />;
+	return <ExtendableComponent {...props} />;
 }
 
 NotFound.propTypes = {
