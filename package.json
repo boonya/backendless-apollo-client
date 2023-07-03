@@ -20,7 +20,7 @@
     "chromatic": "chromatic --build-script-name storybook:build"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.11",
+    "@apollo/client": "^3.7.16",
     "@babel/runtime": "^7.22.5",
     "graphql": "^16.7.1",
     "graphql-tag": "^2.12.6",
