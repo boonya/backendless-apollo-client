@@ -4,7 +4,7 @@ import GeneralError from '@src/components/GeneralError';
 import Progressbar from '@src/components/Progressbar';
 import {useFetchRepoContext} from '@src/providers/FetchRepo/ContextProvider';
 
-export default function RepoDetails({component, ...props}) {
+export default function RepoDetails(props) {
 	const {data, loading, error} = useFetchRepoContext();
 
 	if (loading) {
@@ -20,9 +20,9 @@ export default function RepoDetails({component, ...props}) {
 	}
 
 	const {name, description, languages, createdAt, licenseInfo} = data;
+
 	return (
 		<ExtendableComponent
-			component={component}
 			aria-labelledby="region-label"
 			aria-describedby="region-description"
 			{...props}
