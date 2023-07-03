@@ -22,7 +22,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.11",
     "@babel/runtime": "^7.22.5",
-    "graphql": "^16.6.0",
+    "graphql": "^16.7.1",
     "graphql-tag": "^2.12.6",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
