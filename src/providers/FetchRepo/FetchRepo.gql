@@ -1,0 +1,28 @@
+query FetchRepo($name: String!, $owner: String!, $languages: Int = 5) {
+	repository(name: $name, owner: $owner) {
+		id
+		name
+		url
+		homepageUrl
+		description
+		descriptionHTML
+		createdAt
+		languages(first: $languages) {
+			nodes {
+				id
+				name
+				color
+			}
+		}
+		licenseInfo {
+			id
+			name
+			url
+		}
+		owner {
+			id
+			login
+			avatarUrl
+		}
+	}
+}

@@ -1,0 +1,44 @@
+{
+  "data": {
+    "repository": {
+      "id": "R_kgDOJDgP4w",
+      "name": "backendless-apollo-client",
+      "url": "https://github.com/boonya/backendless-apollo-client",
+      "homepageUrl": "https://boonya.github.io/backendless-apollo-client/",
+      "description": "How to do a Frontend Ahead of Backend demo project",
+      "descriptionHTML": "<div>How to do a Frontend Ahead of Backend demo project</div>",
+      "createdAt": "2023-02-28T12:15:22Z",
+      "languages": null,
+      "licenseInfo": {
+        "id": "MDc6TGljZW5zZTEz",
+        "name": "MIT License",
+        "url": "http://choosealicense.com/licenses/mit/",
+        "__typename": "License"
+      },
+      "owner": {
+        "id": "MDQ6VXNlcjc3OTE4NA==",
+        "login": "boonya",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/779184?v=4",
+        "__typename": "User"
+      },
+      "__typename": "Repository"
+    },
+    "__typename": "Query"
+  },
+  "errors": [
+    {
+      "type": "MISSING_PAGINATION_BOUNDARIES",
+      "path": [
+        "repository",
+        "languages"
+      ],
+      "locations": [
+        {
+          "line": 10,
+          "column": 5
+        }
+      ],
+      "message": "You must provide a `first` or `last` value to properly paginate the `languages` connection."
+    }
+  ]
+}
