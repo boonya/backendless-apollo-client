@@ -18,6 +18,7 @@ module.exports = merge(common, {
 		hot: true,
 		client: {
 			progress: true,
+			overlay: false,
 		},
 	},
 });
