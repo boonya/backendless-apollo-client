@@ -6,7 +6,7 @@ import REPO_DATA from '@src/providers/FetchRepo/__data__/sample';
 import wrapper from '@test/decorators/wrapper';
 import {renderComponent} from '@test/render';
 
-jest.mock('@src/providers/FetchRepo');
+jest.mock('@src/providers/FetchRepo/Fetch');
 
 it('should render a happy path.', () => {
 	FetchRepoProvider.mockImplementation(wrapper(REPO_DATA, FetchRepoContextProvider));

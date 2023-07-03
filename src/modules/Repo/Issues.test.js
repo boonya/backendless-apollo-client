@@ -8,7 +8,7 @@ import REPO from '@src/providers/FetchRepo/__data__/sample';
 import {renderComponent} from '@test/render';
 
 jest.mock('@src/components/IssuesList');
-jest.mock('@src/providers/FetchIssues');
+jest.mock('@src/providers/FetchIssues/Fetch');
 jest.mock('@src/providers/FetchRepo/ContextProvider');
 
 beforeEach(() => {

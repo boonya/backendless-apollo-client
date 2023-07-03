@@ -1,8 +1,8 @@
 import {useCallback, useState} from 'react';
 import {useParams} from 'react-router-dom';
+import ErrorBoundary from '@src/components/ErrorBoundary';
 import ExtendableComponent from '@src/components/ExtendableComponent';
 import './Issues.css';
-import ErrorBoundary from '@src/components/ErrorBoundary';
 import IssuesList from '@src/components/IssuesList';
 import FetchIssuesDataProvider from '@src/providers/FetchIssues/Fetch';
 import {useFetchRepoContext} from '@src/providers/FetchRepo/ContextProvider';
