@@ -1,4 +1,5 @@
 import {action} from '@storybook/addon-actions';
+import {getOperationAST} from 'graphql';
 import {graphql} from 'msw';
 
 function createMswCallback(_response, options, operation) {
@@ -33,7 +34,7 @@ function createMswCallback(_response, options, operation) {
 }
 
 function extractOperationName(operation) {
-	return operation.definitions[0].name.value;
+	return getOperationAST(operation).name.value;
 }
 
 export function query(operation, response, options) {
