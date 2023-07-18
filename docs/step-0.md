@@ -1,5 +1,9 @@
 # Step 0
 
+```sh
+git checkout step-0
+```
+
 I have created several tags for quick navigation through implementation stages.
 
 So let's open source code at [the tag called step-0](https://github.com/boonya/backendless-apollo-client/tree/step-0/src). Here you can see all the directories [I just mentioned](/docs/architecture.md).
@@ -12,7 +16,7 @@ And couple of dummy components such as [RepoDetails](https://github.com/boonya/b
 
 Lets run the application in the sate we currently have, to proof it works somehow.
 
-- `git checkout step-0`
 - `npm start`
+- [`open http://localhost:3000/`](http://localhost:3000/)
 
 The application works but instead of real data we see stubs.

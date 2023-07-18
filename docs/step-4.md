@@ -1,5 +1,9 @@
 # Step 4
 
+```sh
+git checkout step-4
+```
+
 The only one thing left is reactions.
 
 We need [a hook to add a reaction](https://github.com/boonya/backendless-apollo-client/blob/step-4/src/providers/AddReaction/useAddReaction.js). And [to remove reaction](https://github.com/boonya/backendless-apollo-client/blob/step-4/src/providers/RemoveReaction/useRemoveReaction.js).
@@ -13,10 +17,15 @@ These mutations gives us responses and [we have to clear apollo cache](https://g
 
 This is [the component where we call these functions](https://github.com/boonya/backendless-apollo-client/blob/step-4/src/components/Reactions/index.js).
 
+[Story implementation](https://github.com/boonya/backendless-apollo-client/blob/step-4/src/components/IssueDetails/index.stories.js#L13).
+
+```sh
+npm run storybook
+```
+
 Here is [how it works in the storybook](https://refs-tags-step-4--6419a8385ed98e10f7c94189.chromatic.com/?path=/story/modules-issue--fullfilled).
 
 And the application.
 
-- `git checkout step-4`
 - `npm start`
 - [`open http://localhost:3000/`](http://localhost:3000/)

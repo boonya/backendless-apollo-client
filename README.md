@@ -41,6 +41,7 @@ We are going to create a Single Page Application.
 - [Step 2](/docs/step-2.md) - Fetch list of issues
 - [Step 3](/docs/step-3.md) - Fetch specific issue details
 - [Step 4](/docs/step-4.md) - Manipulate by issue reactions
+- [Conclusions](/docs/conclusions.md)
 
 </details>
 

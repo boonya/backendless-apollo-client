@@ -1,5 +1,9 @@
 # Step 1
 
+```sh
+git checkout step-1
+```
+
 So, how we can fetch a data and render it?
 
 Apollo Client library gives us several react hooks.
@@ -82,10 +86,12 @@ Looking at this diagram we could notice it is possible to render Context Consume
 
 Here we render **Repo Details Component** wrapped by **Fetch Repo Context Provider** prefilled by the **sample data**.
 
-[This is how it look in a storybook](https://refs-tags-step-1--6419a8385ed98e10f7c94189.chromatic.com/?path=/story/components-repodetails--repo-details).
+```sh
+npm run storybook
+```
 
-- `git checkout step-1`
-- `npm run storybook`
+[This is how it looks in a storybook](https://refs-tags-step-1--6419a8385ed98e10f7c94189.chromatic.com/?path=/story/components-repodetails--repo-details).
+
 
 But it is just a component. [Here is the module](https://refs-tags-step-1--6419a8385ed98e10f7c94189.chromatic.com/?path=/story/modules-repo--fulfilled) which querys data. But response is mocked by "mock service worker" library. Thanks to this we can see the behaviour of module in isolation out of the real world.
 
