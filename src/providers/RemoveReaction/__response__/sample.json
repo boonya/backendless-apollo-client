@@ -1,0 +1,13 @@
+{
+  "data": {
+    "removeReaction": {
+      "reaction": {
+        "id": "REA_lAHOJDgP485hHYw_zgrvBM4",
+        "content": "ROCKET",
+        "__typename": "Reaction"
+      },
+      "__typename": "RemoveReactionPayload"
+    },
+    "__typename": "Mutation"
+  }
+}

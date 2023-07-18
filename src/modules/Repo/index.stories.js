@@ -39,11 +39,6 @@ SlowQuery.parameters = {msw: {handlers: {
 	fetchRepo: query(QUERY_FETCH_REPO, RESPONSE_FETCH_REPO, {delay: 2000}),
 	fetchIssues: query(QUERY_FETCH_ISSUES, RESPONSE_FETCH_ISSUES, {delay: 2000}),
 }}};
-SlowQuery.play = async ({canvasElement}) => {
-	const canvas = within(canvasElement);
-
-	await canvas.findByRole('progressbar');
-};
 
 // Here we want to see how it looks when a user has clicked the button.
 export function IssuesShown() {
